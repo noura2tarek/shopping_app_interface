@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shopping_app_interface/screens/home_page.dart';
 import 'package:shopping_app_interface/utils/app_strings.dart';
+import 'utils/app_colors.dart';
 
 void main() {
   runApp(const MyApp());
@@ -16,7 +17,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         fontFamily: 'Suwannaphum',
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        colorScheme: ColorScheme.fromSeed(seedColor: AppColors.mainColor),
         useMaterial3: true,
       ),
       home: HomePage(),
