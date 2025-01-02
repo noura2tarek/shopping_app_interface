@@ -30,16 +30,9 @@ class _SignUpPageState extends State<SignUpPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Animate(
-      effects: [
-        if (_signUpVisibility == false)
-          FadeEffect(
-            begin: 0.0,
-            end: 1.0,
-            duration: Duration(milliseconds: 700),
-            curve: Curves.easeInOutSine,
-          ),
-      ],
+    return AnimatedOpacity(
+      opacity: _signUpVisibility ? 1.0 : 0.0,
+      duration: Duration(milliseconds: 700),
       child: Scaffold(
         body: SafeArea(
           child: Padding(
@@ -155,9 +148,12 @@ class _SignUpPageState extends State<SignUpPage> {
                                           context,
                                           MaterialPageRoute(
                                             builder: (context) {
+                                              // Adds a FadeEffect that animates the opacity of the target
+                                              // between the specified begin value and 1.
                                               return HomePage()
                                                   .animate(delay: 700.ms)
                                                   .fadeIn(
+                                                    begin: 0.0,
                                                     duration: 600.ms,
                                                     curve: Curves.easeInOutSine,
                                                   );
