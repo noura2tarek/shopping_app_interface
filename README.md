@@ -23,6 +23,6 @@ And the sign up page is redirected to the home page.
 The UI is made responsive using media queries,  
 The widgets in lib/widgets folder.    
 The screens in lib/screens folder.
-The sign up page output in images folder.
-The font used is Suwannaphum.    
+The sign up page output in images folder.           
+The font used is Suwannaphum.               
 Other App components is stored in lib/utils folder.
