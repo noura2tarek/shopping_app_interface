@@ -139,10 +139,11 @@ class _SignUpPageState extends State<SignUpPage> {
                                   return MyAlertDialog(
                                     onPressedCancel: () {
                                       Navigator.of(context).pop();
+                                      // Fade transition
                                       /////////////////////////////////
                                       context.pushReplacementTransition(
                                         type: PageTransitionType.fade,
-                                        duration: 500.ms,
+                                        duration: 200.ms,
                                         curve: Curves.easeInOut,
                                         child: HomePage(),
                                       );
