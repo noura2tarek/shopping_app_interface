@@ -46,7 +46,7 @@ class _SignUpPageState extends State<SignUpPage> {
                       ),
                     ),
                     const SizedBox(
-                      height: 20.0,
+                      height: 25.0,
                     ),
                     /*------------- Full Name Text Field -------------*/
                     CustomFromField(
@@ -120,7 +120,7 @@ class _SignUpPageState extends State<SignUpPage> {
                     ),
                     /*---------- Sign Up Button ----------*/
                     Padding(
-                      padding: const EdgeInsets.only(top: 30.0),
+                      padding: const EdgeInsets.all(30.0),
                       child: SizedBox(
                         width: double.infinity,
                         child: SignUpButton(

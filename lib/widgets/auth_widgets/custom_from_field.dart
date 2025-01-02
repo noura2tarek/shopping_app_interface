@@ -26,24 +26,27 @@ class CustomFromField extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(bottom: 15.0),
-      child: TextFormField(
-        controller: controller,
-        keyboardType: keyboardType,
-        obscureText: secure,
-        decoration: InputDecoration(
-          hintText: hintText,
-          hintStyle: TextStyle(fontSize: 14.0),
-          border: OutlineInputBorder(
-            borderRadius: BorderRadius.all(Radius.circular(10.0)),
+      child: SizedBox(
+        height: 49.0,
+        child: TextFormField(
+          controller: controller,
+          keyboardType: keyboardType,
+          obscureText: secure,
+          decoration: InputDecoration(
+            hintText: hintText,
+            hintStyle: TextStyle(fontSize: 14.0),
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.all(Radius.circular(10.0)),
+            ),
+            suffixIcon: isPassword
+                ? IconButton(
+                    onPressed: suffixPressed,
+                    icon: Icon(suffixIcon),
+                  )
+                : null,
           ),
-          suffixIcon: isPassword
-              ? IconButton(
-                  onPressed: suffixPressed,
-                  icon: Icon(suffixIcon),
-                )
-              : null,
+          validator: validator,
         ),
-        validator: validator,
       ),
     );
   }
