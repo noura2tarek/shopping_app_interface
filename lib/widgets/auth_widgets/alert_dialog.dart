@@ -19,10 +19,13 @@ class MyAlertDialog extends StatelessWidget {
           shape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(9.0)),
           onPressed: () {
-            Navigator.of(context).pop();
-            Navigator.of(context).pushReplacement(MaterialPageRoute(
-              builder: (context) => HomePage(),
-            ));
+            Navigator.pushAndRemoveUntil(
+              context,
+              MaterialPageRoute(
+                builder: (context) => HomePage(),
+              ),
+              (route) => false,
+            );
           },
           color: AppColors.mainColor,
           child: const Text(
