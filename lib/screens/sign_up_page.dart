@@ -132,6 +132,7 @@ class _SignUpPageState extends State<SignUpPage> {
                           nameController: nameController,
                           onPressed: () {
                             if (_formKey.currentState!.validate()) {
+                              //-- Show the alert dialog --//
                               showDialog(
                                 context: context,
                                 builder: (context) {
@@ -141,7 +142,6 @@ class _SignUpPageState extends State<SignUpPage> {
                                       /////////////////////////////////
                                       context.pushReplacementTransition(
                                         type: PageTransitionType.fade,
-                                        // begin: 0.0,
                                         duration: 500.ms,
                                         curve: Curves.easeInOut,
                                         child: HomePage(),
