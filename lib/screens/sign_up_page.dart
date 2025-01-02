@@ -3,35 +3,6 @@ import '../utils/app_strings.dart';
 import '../widgets/auth_widgets/custom_from_field.dart';
 import '../widgets/auth_widgets/sign_up_button.dart';
 
-// const List<String> lowercaseAlphabets = [
-//   'a',
-//   'b',
-//   'c',
-//   'd',
-//   'e',
-//   'f',
-//   'g',
-//   'h',
-//   'i',
-//   'j',
-//   'k',
-//   'l',
-//   'm',
-//   'n',
-//   'o',
-//   'p',
-//   'q',
-//   'r',
-//   's',
-//   't',
-//   'u',
-//   'v',
-//   'w',
-//   'x',
-//   'y',
-//   'z'
-// ];
-
 class SignUpPage extends StatefulWidget {
   const SignUpPage({super.key});
 
