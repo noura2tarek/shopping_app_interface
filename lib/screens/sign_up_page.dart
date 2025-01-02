@@ -63,7 +63,7 @@ class _SignUpPageState extends State<SignUpPage> {
                         }
                       },
                     ),
-                    /*------------- Email Text Field -------------*/
+                    /*------------ Email Text Field ------------*/
                     CustomFromField(
                       controller: emailController,
                       keyboardType: TextInputType.emailAddress,
@@ -78,7 +78,7 @@ class _SignUpPageState extends State<SignUpPage> {
                         }
                       },
                     ),
-                    /*------------- Password Text Field -------------*/
+                    /*------------ Password Text Field ------------*/
                     CustomFromField(
                       controller: passwordController,
                       isPassword: true,
@@ -97,7 +97,7 @@ class _SignUpPageState extends State<SignUpPage> {
                         }
                       },
                     ),
-                    /*------------- Confirm Password Text Field -------------*/
+                    /*----------- Confirm Password Text Field -----------*/
                     CustomFromField(
                       controller: confirmPasswordController,
                       isPassword: true,
@@ -158,7 +158,7 @@ class _SignUpPageState extends State<SignUpPage> {
     );
   }
 
-  ///////////---- Methods ----///////////
+  //--------- Methods ----------//
   changePasswordVisibility() {
     setState(() {
       isPasswordSecure = !isPasswordSecure;
