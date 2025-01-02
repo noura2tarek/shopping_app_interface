@@ -14,7 +14,7 @@ class AppStrings {
   static const String enterYourPassword = 'Enter your password..';
   static const String passwordsCannotBeEmpty = 'password can\'t be empty';
   static const String passwordsMustBeMore =
-      'password must be more than 6 characters';
+      'password must has at least 6 characters.';
   static const String enterYourConfirmPassword = 'Enter your confirm password..';
   static const String passwordsNotMatch = 'passwords don\'t match, try again';
   static const String accountCreatedSuccessfully = 'Account created successfully!';
