@@ -1,14 +1,14 @@
 //--  Alert dialog --//
 import 'package:flutter/material.dart';
 import 'package:shopping_app_interface/utils/app_strings.dart';
-import '../../screens/home_page.dart';
 import '../../utils/app_colors.dart';
 
 class MyAlertDialog extends StatelessWidget {
   const MyAlertDialog({
     super.key,
+    this.onPressedCancel,
   });
-
+  final void Function()? onPressedCancel;
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
@@ -18,12 +18,7 @@ class MyAlertDialog extends StatelessWidget {
         MaterialButton(
           shape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(9.0)),
-          onPressed: () {
-            Navigator.of(context).pop();
-            Navigator.of(context).pushReplacement(MaterialPageRoute(
-              builder: (context) => HomePage(),
-            ));
-          },
+          onPressed: onPressedCancel,
           color: AppColors.mainColor,
           child: const Text(
             AppStrings.close,

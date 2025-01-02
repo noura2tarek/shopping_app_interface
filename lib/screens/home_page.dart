@@ -8,7 +8,7 @@ import '../utils/lists.dart';
 import '../widgets/custom_snack_bar.dart';
 import '../widgets/custom_text.dart';
 
-/* -------------- Home page ----------------*/
+/* ------------- Home page ---------------*/
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
 

@@ -20,8 +20,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: AppColors.mainColor),
         useMaterial3: true,
       ),
-      home: SignUpPage(
-      ),
+      home: SignUpPage(),
     );
   }
 }

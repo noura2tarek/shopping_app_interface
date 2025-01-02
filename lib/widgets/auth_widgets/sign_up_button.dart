@@ -2,18 +2,19 @@
 import 'package:flutter/material.dart';
 import 'package:shopping_app_interface/utils/app_strings.dart';
 import '../../utils/app_colors.dart';
-import 'alert_dialog.dart';
 
 class SignUpButton extends StatelessWidget {
   const SignUpButton({
     super.key,
     required this.formKey,
     required this.nameController,
+    this.onPressed,
   });
+
 
   final GlobalKey<FormState> formKey;
   final TextEditingController nameController;
-
+  final void Function()? onPressed;
   @override
   Widget build(BuildContext context) {
     return OutlinedButton(
@@ -23,16 +24,7 @@ class SignUpButton extends StatelessWidget {
           borderRadius: BorderRadius.circular(10.0),
         ),
       ),
-      onPressed: () {
-        if (formKey.currentState!.validate()) {
-          showDialog(
-            context: context,
-            builder: (context) {
-              return MyAlertDialog();
-            },
-          );
-        }
-      },
+      onPressed: onPressed,
       child: Text(
         AppStrings.signUp,
         style: TextStyle(

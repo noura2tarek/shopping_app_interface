@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import '../utils/app_strings.dart';
+import '../widgets/auth_widgets/alert_dialog.dart';
 import '../widgets/auth_widgets/custom_from_field.dart';
 import '../widgets/auth_widgets/sign_up_button.dart';
+import 'home_page.dart';
 
+/* ------------ Sign Up page --------------*/
 class SignUpPage extends StatefulWidget {
   const SignUpPage({super.key});
 
@@ -22,112 +26,155 @@ class _SignUpPageState extends State<SignUpPage> {
   IconData passwordSuffix = Icons.visibility_outlined;
   IconData confirmPasswordSuffix = Icons.visibility_outlined;
   final _formKey = GlobalKey<FormState>();
+  bool _signUpVisibility = true;
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.all(25.0),
-          child: Center(
-            child: SingleChildScrollView(
-              child: Form(
-                key: _formKey,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      AppStrings.signUp,
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 30.0,
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 20.0,
-                    ),
-                    /*------------- Full Name Text Field -------------*/
-                    CustomFromField(
-                      controller: nameController,
-                      keyboardType: TextInputType.name,
-                      hintText: AppStrings.enterYourFullName,
-                      validator: (value) {
-                        if (value!.isEmpty) {
-                          return AppStrings.pleaseEnterYourName;
-                        } else if (value[0] != value[0].toUpperCase()) {
-                          return AppStrings.fullNameMustStart;
-                        } else {
-                          return null;
-                        }
-                      },
-                    ),
-                    /*------------- Email Text Field -------------*/
-                    CustomFromField(
-                      controller: emailController,
-                      keyboardType: TextInputType.emailAddress,
-                      hintText: AppStrings.enterYourEmail,
-                      validator: (value) {
-                        if (value!.isEmpty) {
-                          return AppStrings.pleaseEnterYourEmail;
-                        } else if (!(value.contains('@')) &&
-                            !(value.contains('.'))) {
-                          return AppStrings.pleaseEnterValidEmail;
-                        } else {
-                          return null;
-                        }
-                      },
-                    ),
-                    /*------------- Password Text Field -------------*/
-                    CustomFromField(
-                      controller: passwordController,
-                      isPassword: true,
-                      secure: isPasswordSecure,
-                      suffixIcon: passwordSuffix,
-                      keyboardType: TextInputType.visiblePassword,
-                      suffixPressed: changePasswordVisibility,
-                      hintText: AppStrings.enterYourPassword,
-                      validator: (value) {
-                        if (value!.isEmpty) {
-                          return AppStrings.passwordsCannotBeEmpty;
-                        } else if (value.length < 6) {
-                          return AppStrings.passwordsMustBeMore;
-                        } else {
-                          return null;
-                        }
-                      },
-                    ),
-                    /*------------- Confirm Password Text Field -------------*/
-                    CustomFromField(
-                      controller: confirmPasswordController,
-                      isPassword: true,
-                      secure: isConfirmPasswordSecure,
-                      suffixIcon: confirmPasswordSuffix,
-                      keyboardType: TextInputType.visiblePassword,
-                      suffixPressed: changeConfirmPasswordVisibility,
-                      hintText: AppStrings.enterYourConfirmPassword,
-                      validator: (value) {
-                        if (value!.isEmpty) {
-                          return null;
-                        }
-                        if (value.compareTo(passwordController.text) != 0) {
-                          return AppStrings.passwordsNotMatch;
-                        } else {
-                          return null;
-                        }
-                      },
-                    ),
-                    /*---------- Sign Up Button ----------*/
-                    Padding(
-                      padding: const EdgeInsets.only(top: 30.0),
-                      child: SizedBox(
-                        width: double.infinity,
-                        child: SignUpButton(
-                          formKey: _formKey,
-                          nameController: nameController,
+    return Animate(
+      effects: [
+        if (_signUpVisibility == false)
+          FadeEffect(
+            begin: 0.0,
+            end: 1.0,
+            duration: Duration(milliseconds: 700),
+            curve: Curves.easeInOutSine,
+          ),
+      ],
+      child: Scaffold(
+        body: SafeArea(
+          child: Padding(
+            padding: const EdgeInsets.all(25.0),
+            child: Center(
+              child: SingleChildScrollView(
+                child: Form(
+                  key: _formKey,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        AppStrings.signUp,
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 30.0,
                         ),
                       ),
-                    )
-                  ],
+                      const SizedBox(
+                        height: 20.0,
+                      ),
+                      /*------------- Full Name Text Field -------------*/
+                      CustomFromField(
+                        controller: nameController,
+                        keyboardType: TextInputType.name,
+                        hintText: AppStrings.enterYourFullName,
+                        validator: (value) {
+                          if (value!.isEmpty) {
+                            return AppStrings.pleaseEnterYourName;
+                          } else if (value[0] != value[0].toUpperCase()) {
+                            return AppStrings.fullNameMustStart;
+                          } else {
+                            return null;
+                          }
+                        },
+                      ),
+                      /*------------- Email Text Field -------------*/
+                      CustomFromField(
+                        controller: emailController,
+                        keyboardType: TextInputType.emailAddress,
+                        hintText: AppStrings.enterYourEmail,
+                        validator: (value) {
+                          if (value!.isEmpty) {
+                            return AppStrings.pleaseEnterYourEmail;
+                          } else if (!(value.contains('@')) &&
+                              !(value.contains('.'))) {
+                            return AppStrings.pleaseEnterValidEmail;
+                          } else {
+                            return null;
+                          }
+                        },
+                      ),
+                      /*------------- Password Text Field -------------*/
+                      CustomFromField(
+                        controller: passwordController,
+                        isPassword: true,
+                        secure: isPasswordSecure,
+                        suffixIcon: passwordSuffix,
+                        keyboardType: TextInputType.visiblePassword,
+                        suffixPressed: changePasswordVisibility,
+                        hintText: AppStrings.enterYourPassword,
+                        validator: (value) {
+                          if (value!.isEmpty) {
+                            return AppStrings.passwordsCannotBeEmpty;
+                          } else if (value.length < 6) {
+                            return AppStrings.passwordsMustBeMore;
+                          } else {
+                            return null;
+                          }
+                        },
+                      ),
+                      /*------------- Confirm Password Text Field -------------*/
+                      CustomFromField(
+                        controller: confirmPasswordController,
+                        isPassword: true,
+                        secure: isConfirmPasswordSecure,
+                        suffixIcon: confirmPasswordSuffix,
+                        keyboardType: TextInputType.visiblePassword,
+                        suffixPressed: changeConfirmPasswordVisibility,
+                        hintText: AppStrings.enterYourConfirmPassword,
+                        validator: (value) {
+                          if (value!.isEmpty) {
+                            return null;
+                          }
+                          if (value.compareTo(passwordController.text) != 0) {
+                            return AppStrings.passwordsNotMatch;
+                          } else {
+                            return null;
+                          }
+                        },
+                      ),
+                      /*---------- Sign Up Button ----------*/
+                      Padding(
+                        padding: const EdgeInsets.only(top: 30.0),
+                        child: SizedBox(
+                          width: double.infinity,
+                          child: SignUpButton(
+                            formKey: _formKey,
+                            nameController: nameController,
+                            onPressed: () {
+                              if (_formKey.currentState!.validate()) {
+                                showDialog(
+                                  context: context,
+                                  builder: (context) {
+                                    return MyAlertDialog(
+                                      onPressedCancel: () {
+                                        Navigator.of(context).pop();
+                                        setState(() {
+                                          _signUpVisibility = false;
+                                        });
+                                        /////////////////////////////////
+                                        Navigator.pushReplacement(
+                                          context,
+                                          MaterialPageRoute(
+                                            builder: (context) {
+                                              return HomePage()
+                                                  .animate(delay: 700.ms)
+                                                  .fadeIn(
+                                                    duration: 600.ms,
+                                                    curve: Curves.easeInOutSine,
+                                                  );
+                                            },
+                                          ),
+                                        );
+                                      },
+                                    );
+                                  },
+                                );
+                              }
+                            },
+                          ),
+                        ),
+                      )
+                    ],
+                  ),
                 ),
               ),
             ),
@@ -137,7 +184,7 @@ class _SignUpPageState extends State<SignUpPage> {
     );
   }
 
-  //////////////////////////////
+  ////////////// Methods ////////////////
   changePasswordVisibility() {
     setState(() {
       isPasswordSecure = !isPasswordSecure;
@@ -157,4 +204,4 @@ class _SignUpPageState extends State<SignUpPage> {
   }
 }
 
-///////////////////////////////////////
+////////////////// End of page /////////////////////
