@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:shopping_app_interface/screens/home_page.dart';
+import 'package:shopping_app_interface/screens/sign_up_page.dart';
 import 'package:shopping_app_interface/utils/app_strings.dart';
 import 'utils/app_colors.dart';
 
@@ -20,7 +20,8 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: AppColors.mainColor),
         useMaterial3: true,
       ),
-      home: HomePage(),
+      home: SignUpPage(
+      ),
     );
   }
 }
