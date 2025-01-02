@@ -16,6 +16,8 @@ class ProductsGridView extends StatelessWidget {
       shrinkWrap: true,
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 2,
+        mainAxisSpacing: 2,
+        crossAxisSpacing: 2,
         // use childAspectRatio to customize size to any screen
         childAspectRatio: 7 / 8.5,
       ),
