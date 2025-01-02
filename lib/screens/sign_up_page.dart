@@ -71,8 +71,7 @@ class _SignUpPageState extends State<SignUpPage> {
                       validator: (value) {
                         if (value!.isEmpty) {
                           return AppStrings.pleaseEnterYourEmail;
-                        } else if (!(value.contains('@')) &&
-                            !(value.contains('.'))) {
+                        } else if (!(value.contains('@'))) {
                           return AppStrings.pleaseEnterValidEmail;
                         } else {
                           return null;
@@ -159,7 +158,7 @@ class _SignUpPageState extends State<SignUpPage> {
     );
   }
 
-  //////////////////////////////
+  ///////////---- Methods ----///////////
   changePasswordVisibility() {
     setState(() {
       isPasswordSecure = !isPasswordSecure;
