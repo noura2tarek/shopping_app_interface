@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import '../utils/app_strings.dart';
+import '../widgets/auth_widgets/alert_dialog.dart';
 import '../widgets/auth_widgets/custom_from_field.dart';
 import '../widgets/auth_widgets/sign_up_button.dart';
+import 'home_page.dart';
 
 class SignUpPage extends StatefulWidget {
   const SignUpPage({super.key});
@@ -124,6 +126,26 @@ class _SignUpPageState extends State<SignUpPage> {
                         child: SignUpButton(
                           formKey: _formKey,
                           nameController: nameController,
+                          onPressed: () {
+                            if (_formKey.currentState!.validate()) {
+                              showDialog(
+                                context: context,
+                                builder: (context) {
+                                  return MyAlertDialog(
+                                    onPressedCancel: () {
+                                      Navigator.pushAndRemoveUntil(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (context) => HomePage(),
+                                        ),
+                                        (route) => false,
+                                      );
+                                    },
+                                  );
+                                },
+                              );
+                            }
+                          },
                         ),
                       ),
                     )
