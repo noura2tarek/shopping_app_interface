@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:page_transition/page_transition.dart';
 import '../utils/app_strings.dart';
 import '../widgets/auth_widgets/alert_dialog.dart';
 import '../widgets/auth_widgets/custom_from_field.dart';
@@ -137,31 +138,35 @@ class _SignUpPageState extends State<SignUpPage> {
                                   return MyAlertDialog(
                                     onPressedCancel: () {
                                       Navigator.of(context).pop();
-                                      // setState(() {
-                                      //   _signUpVisibility = false;
-                                      // });
                                       /////////////////////////////////
-                                      Navigator.pushReplacement(
-                                        context,
-                                        MaterialPageRoute(
-                                          builder: (context) {
-                                            // Adds a FadeEffect that animates the opacity of the target
-                                            // between the specified begin value and 1.
-                                            return Animate(
-                                              effects: [
-                                                // fade in
-                                                FadeEffect(
-                                                  begin: 0.0,
-                                                  delay: Duration(milliseconds: 40),
-                                                  duration: 600.ms,
-                                                  curve: Curves.easeInOutSine,
-                                                ),
-                                              ],
-                                              child: HomePage(),
-                                            );
-                                          },
-                                        ),
+                                      context.pushReplacementTransition(
+                                        type: PageTransitionType.fade,
+                                        // begin: 0.0,
+                                        duration: 500.ms,
+                                        curve: Curves.easeInOut,
+                                        child: HomePage(),
                                       );
+                                      // Navigator.pushReplacement(
+                                      //   context,
+                                      //   MaterialPageRoute(
+                                      //     builder: (context) {
+                                      //       // Adds a FadeEffect that animates the opacity of the target
+                                      //       // between the specified begin value and 1.
+                                      //       return Animate(
+                                      //         effects: [
+                                      //           // fade in
+                                      //           FadeEffect(
+                                      //             begin: 0.0,
+                                      //             delay: Duration(milliseconds: 40),
+                                      //             duration: 600.ms,
+                                      //             curve: Curves.easeInOutSine,
+                                      //           ),
+                                      //         ],
+                                      //         child: HomePage(),
+                                      //       );
+                                      //     },
+                                      //   ),
+                                      // );
                                     },
                                   );
                                 },

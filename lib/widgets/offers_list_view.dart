@@ -9,7 +9,7 @@ class OffersListView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
+    return ListView.separated(
       scrollDirection: Axis.horizontal,
       shrinkWrap: true,
       itemCount: 5,
@@ -21,6 +21,9 @@ class OffersListView extends StatelessWidget {
           text: AppStrings.sportsOffer,
         );
       },
+      separatorBuilder: (context, index) => SizedBox(
+        width: 2.0,
+      ),
     );
   }
 }

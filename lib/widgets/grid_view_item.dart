@@ -17,45 +17,57 @@ class GridViewItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      color: AppColors.white,
-      margin: EdgeInsets.all(5.0),
-      child: Column(
-        children: [
-          // product photo //
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 8.0),
-            child: CustomNetworkImage(
-              imageLink: imageLink,
-            ),
-          ),
-          /*--- Product Name ----*/
-          ProductText(text: name),
-          /* ---- Row of price and add to cart icon  ---*/
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 5.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  '21\$',
-                  style: TextStyle(
-                    color: AppColors.mainColor,
-                    fontWeight: FontWeight.w500,
-                  ),
-                ),
-                IconButton(
-                  icon: Icon(
-                    Icons.add_shopping_cart_outlined,
-                    size: 18.0,
-                    color: AppColors.mainColor,
-                  ),
-                  onPressed: onTap,
-                ),
-              ],
-            ),
+    return Container(
+      decoration: BoxDecoration(
+        boxShadow: [
+          BoxShadow(
+            color: AppColors.grey300!.withValues(alpha: 0.2),
+            spreadRadius: 2.0,
+            blurRadius: 2.0,
           ),
         ],
+      ),
+      child: Card(
+        elevation: 0.0,
+        color: AppColors.white,
+        margin: EdgeInsets.all(5.0),
+        child: Column(
+          children: [
+            // product photo //
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 8.0),
+              child: CustomNetworkImage(
+                imageLink: imageLink,
+              ),
+            ),
+            /*--- Product Name ----*/
+            ProductText(text: name),
+            /* ---- Row of price and add to cart icon  ---*/
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 5.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    '21\$',
+                    style: TextStyle(
+                      color: AppColors.mainColor,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                  IconButton(
+                    icon: Icon(
+                      Icons.add_shopping_cart_outlined,
+                      size: 18.0,
+                      color: AppColors.mainColor,
+                    ),
+                    onPressed: onTap,
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
