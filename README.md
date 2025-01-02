@@ -17,5 +17,5 @@ The screens in lib/screens folder.
 The font used is Suwannaphum.    
 The fonts and images used in assets folder.   
 Other App components is stored in lib/utils folder.
-///
+                               
 Note ---> the sign up page task in the same repository in branch sign_up_feature
