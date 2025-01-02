@@ -27,7 +27,7 @@ class CustomFromField extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(bottom: 15.0),
       child: SizedBox(
-        height: 49.0,
+        height: 48.0,
         child: TextFormField(
           controller: controller,
           keyboardType: keyboardType,
