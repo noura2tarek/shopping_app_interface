@@ -177,5 +177,4 @@ class _SignUpPageState extends State<SignUpPage> {
     });
   }
 }
-
-///////////////////////////////////////
+/*---------- End of the sign up page -------------*/
