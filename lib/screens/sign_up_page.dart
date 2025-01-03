@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_animate/flutter_animate.dart';
-import 'package:page_transition/page_transition.dart';
 import '../utils/app_strings.dart';
 import '../widgets/auth_widgets/alert_dialog.dart';
 import '../widgets/auth_widgets/custom_from_field.dart';
@@ -16,10 +14,10 @@ class SignUpPage extends StatefulWidget {
 }
 
 class _SignUpPageState extends State<SignUpPage> {
-  final TextEditingController nameController = TextEditingController();
-  final TextEditingController emailController = TextEditingController();
-  final TextEditingController passwordController = TextEditingController();
-  final TextEditingController confirmPasswordController =
+  final TextEditingController _nameController = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _confirmPasswordController =
       TextEditingController();
 
   bool isPasswordSecure = true;
@@ -27,6 +25,7 @@ class _SignUpPageState extends State<SignUpPage> {
   IconData passwordSuffix = Icons.visibility_outlined;
   IconData confirmPasswordSuffix = Icons.visibility_outlined;
   final _formKey = GlobalKey<FormState>();
+
   //bool _signUpVisibility = true;
 
   @override
@@ -54,7 +53,7 @@ class _SignUpPageState extends State<SignUpPage> {
                     ),
                     /*------------- Full Name Text Field -------------*/
                     CustomFromField(
-                      controller: nameController,
+                      controller: _nameController,
                       keyboardType: TextInputType.name,
                       hintText: AppStrings.enterYourFullName,
                       validator: (value) {
@@ -69,7 +68,7 @@ class _SignUpPageState extends State<SignUpPage> {
                     ),
                     /*------------- Email Text Field -------------*/
                     CustomFromField(
-                      controller: emailController,
+                      controller: _emailController,
                       keyboardType: TextInputType.emailAddress,
                       hintText: AppStrings.enterYourEmail,
                       validator: (value) {
@@ -85,12 +84,12 @@ class _SignUpPageState extends State<SignUpPage> {
                     ),
                     /*------------- Password Text Field -------------*/
                     CustomFromField(
-                      controller: passwordController,
+                      controller: _passwordController,
                       isPassword: true,
                       secure: isPasswordSecure,
                       suffixIcon: passwordSuffix,
                       keyboardType: TextInputType.visiblePassword,
-                      suffixPressed: changePasswordVisibility,
+                      suffixPressed: _changePasswordVisibility,
                       hintText: AppStrings.enterYourPassword,
                       validator: (value) {
                         if (value!.isEmpty) {
@@ -104,18 +103,18 @@ class _SignUpPageState extends State<SignUpPage> {
                     ),
                     /*------------- Confirm Password Text Field -------------*/
                     CustomFromField(
-                      controller: confirmPasswordController,
+                      controller: _confirmPasswordController,
                       isPassword: true,
                       secure: isConfirmPasswordSecure,
                       suffixIcon: confirmPasswordSuffix,
                       keyboardType: TextInputType.visiblePassword,
-                      suffixPressed: changeConfirmPasswordVisibility,
+                      suffixPressed: _changeConfirmPasswordVisibility,
                       hintText: AppStrings.enterYourConfirmPassword,
                       validator: (value) {
                         if (value!.isEmpty) {
                           return null;
                         }
-                        if (value.compareTo(passwordController.text) != 0) {
+                        if (value.compareTo(_passwordController.text) != 0) {
                           return AppStrings.passwordsNotMatch;
                         } else {
                           return null;
@@ -129,7 +128,7 @@ class _SignUpPageState extends State<SignUpPage> {
                         width: double.infinity,
                         child: SignUpButton(
                           formKey: _formKey,
-                          nameController: nameController,
+                          nameController: _nameController,
                           onPressed: () {
                             if (_formKey.currentState!.validate()) {
                               //-- Show the alert dialog --//
@@ -138,14 +137,12 @@ class _SignUpPageState extends State<SignUpPage> {
                                 builder: (context) {
                                   return MyAlertDialog(
                                     onPressedCancel: () {
-                                      Navigator.of(context).pop();
+                                      // Navigator.of(context).pop();
                                       // Fade transition
                                       /////////////////////////////////
-                                      context.pushReplacementTransition(
-                                        type: PageTransitionType.fade,
-                                        duration: 200.ms,
-                                        curve: Curves.easeInOut,
-                                        child: HomePage(),
+                                      Navigator.of(context).pushAndRemoveUntil(
+                                        CustomPageRoute(HomePage()),
+                                        (Route<dynamic> route) => false,
                                       );
                                       // Navigator.pushReplacement(
                                       //   context,
@@ -188,7 +185,7 @@ class _SignUpPageState extends State<SignUpPage> {
   }
 
   ////////////// Methods ////////////////
-  changePasswordVisibility() {
+  _changePasswordVisibility() {
     setState(() {
       isPasswordSecure = !isPasswordSecure;
       passwordSuffix = isPasswordSecure
@@ -197,7 +194,7 @@ class _SignUpPageState extends State<SignUpPage> {
     });
   }
 
-  changeConfirmPasswordVisibility() {
+  _changeConfirmPasswordVisibility() {
     setState(() {
       isConfirmPasswordSecure = !isConfirmPasswordSecure;
       confirmPasswordSuffix = isConfirmPasswordSecure
@@ -205,6 +202,58 @@ class _SignUpPageState extends State<SignUpPage> {
           : Icons.visibility_off_outlined;
     });
   }
-}
 
-////////////////// End of page /////////////////////
+  /*---------- Create Route using Page Route Builder -------*/
+  Route _createRoute(Widget page) {
+    return PageRouteBuilder(
+      pageBuilder: (context, animation, secondaryAnimation) => page,
+      transitionsBuilder: (context, animation, secondaryAnimation, child) {
+        // const begin = Offset(0.0, 1.0);
+        // const end = Offset.zero;
+        // const curve = Curves.ease;
+        return FadeTransition(
+          opacity: animation,
+          child: child,
+        );
+      },
+    );
+  }
+}
+/*---------------- End of the Sign up page widget ------------------*/
+
+//-- Create Custom page route to apply custom fade transition --//
+class CustomPageRoute<T> extends PageRoute<T> {
+  CustomPageRoute(this.child);
+
+  @override
+  Color get barrierColor => Colors.black;
+
+  @override
+  String? get barrierLabel => null;
+
+  final Widget child;
+
+  @override
+  Widget buildPage(BuildContext context, Animation<double> animation,
+      Animation<double> secondaryAnimation) {
+    return FadeTransition(
+      opacity: animation,
+      child: child,
+    );
+  }
+
+  @override
+  bool get maintainState => true;
+
+  @override
+  Duration get transitionDuration => Duration(seconds: 1);
+
+  @override
+  Widget buildTransitions(BuildContext context, Animation<double> animation,
+      Animation<double> secondaryAnimation, Widget child) {
+    return FadeTransition(
+      opacity: animation,
+      child: child,
+    );
+  }
+}
