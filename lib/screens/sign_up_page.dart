@@ -78,7 +78,7 @@ class _SignUpPageState extends State<SignUpPage> {
                         }
                       },
                     ),
-                    /*------------ Password Text Field ------------*/
+                    /*----------- Password Text Field -----------*/
                     CustomFromField(
                       controller: _passwordController,
                       isPassword: true,
@@ -97,7 +97,7 @@ class _SignUpPageState extends State<SignUpPage> {
                         }
                       },
                     ),
-                    /*----------- Confirm Password Text Field -----------*/
+                    /*---------- Confirm Password Text Field ----------*/
                     CustomFromField(
                       controller: _confirmPasswordController,
                       isPassword: true,
@@ -177,4 +177,4 @@ class _SignUpPageState extends State<SignUpPage> {
     });
   }
 }
-/*---------- End of the sign up page -------------*/
+/*---------- End of the sign up page widget -------------*/
