@@ -26,8 +26,6 @@ class _SignUpPageState extends State<SignUpPage> {
   IconData confirmPasswordSuffix = Icons.visibility_outlined;
   final _formKey = GlobalKey<FormState>();
 
-  //bool _signUpVisibility = true;
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -74,8 +72,7 @@ class _SignUpPageState extends State<SignUpPage> {
                       validator: (value) {
                         if (value!.isEmpty) {
                           return AppStrings.pleaseEnterYourEmail;
-                        } else if (!(value.contains('@')) &&
-                            !(value.contains('.'))) {
+                        } else if (!(value.contains('@'))) {
                           return AppStrings.pleaseEnterValidEmail;
                         } else {
                           return null;
@@ -201,22 +198,6 @@ class _SignUpPageState extends State<SignUpPage> {
           ? Icons.visibility_outlined
           : Icons.visibility_off_outlined;
     });
-  }
-
-  /*---------- Create Route using Page Route Builder -------*/
-  Route _createRoute(Widget page) {
-    return PageRouteBuilder(
-      pageBuilder: (context, animation, secondaryAnimation) => page,
-      transitionsBuilder: (context, animation, secondaryAnimation, child) {
-        // const begin = Offset(0.0, 1.0);
-        // const end = Offset.zero;
-        // const curve = Curves.ease;
-        return FadeTransition(
-          opacity: animation,
-          child: child,
-        );
-      },
-    );
   }
 }
 /*---------------- End of the Sign up page widget ------------------*/
