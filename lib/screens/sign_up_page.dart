@@ -13,10 +13,10 @@ class SignUpPage extends StatefulWidget {
 }
 
 class _SignUpPageState extends State<SignUpPage> {
-  final TextEditingController nameController = TextEditingController();
-  final TextEditingController emailController = TextEditingController();
-  final TextEditingController passwordController = TextEditingController();
-  final TextEditingController confirmPasswordController =
+  final TextEditingController _nameController = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _confirmPasswordController =
       TextEditingController();
 
   bool isPasswordSecure = true;
@@ -50,7 +50,7 @@ class _SignUpPageState extends State<SignUpPage> {
                     ),
                     /*------------- Full Name Text Field -------------*/
                     CustomFromField(
-                      controller: nameController,
+                      controller: _nameController,
                       keyboardType: TextInputType.name,
                       hintText: AppStrings.enterYourFullName,
                       validator: (value) {
@@ -65,7 +65,7 @@ class _SignUpPageState extends State<SignUpPage> {
                     ),
                     /*------------ Email Text Field ------------*/
                     CustomFromField(
-                      controller: emailController,
+                      controller: _emailController,
                       keyboardType: TextInputType.emailAddress,
                       hintText: AppStrings.enterYourEmail,
                       validator: (value) {
@@ -80,7 +80,7 @@ class _SignUpPageState extends State<SignUpPage> {
                     ),
                     /*------------ Password Text Field ------------*/
                     CustomFromField(
-                      controller: passwordController,
+                      controller: _passwordController,
                       isPassword: true,
                       secure: isPasswordSecure,
                       suffixIcon: passwordSuffix,
@@ -99,7 +99,7 @@ class _SignUpPageState extends State<SignUpPage> {
                     ),
                     /*----------- Confirm Password Text Field -----------*/
                     CustomFromField(
-                      controller: confirmPasswordController,
+                      controller: _confirmPasswordController,
                       isPassword: true,
                       secure: isConfirmPasswordSecure,
                       suffixIcon: confirmPasswordSuffix,
@@ -110,7 +110,7 @@ class _SignUpPageState extends State<SignUpPage> {
                         if (value!.isEmpty) {
                           return null;
                         }
-                        if (value.compareTo(passwordController.text) != 0) {
+                        if (value.compareTo(_passwordController.text) != 0) {
                           return AppStrings.passwordsNotMatch;
                         } else {
                           return null;
@@ -124,7 +124,7 @@ class _SignUpPageState extends State<SignUpPage> {
                         width: double.infinity,
                         child: SignUpButton(
                           formKey: _formKey,
-                          nameController: nameController,
+                          nameController: _nameController,
                           onPressed: () {
                             if (_formKey.currentState!.validate()) {
                               showDialog(
