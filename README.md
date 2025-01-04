@@ -20,6 +20,6 @@ It changes the locale using set Locale method in easy localization.
 The widgets in lib/widgets folder.    
 The screens in lib/screens folder.                   
 The localization output in images folder with the name of 'loc_output'.           
-The font used is Suwannaphum. 
-The package used is easy_localization.
+The font used is Suwannaphum.      
+The package used is easy_localization.      
 Other App components is stored in lib/utils folder.
