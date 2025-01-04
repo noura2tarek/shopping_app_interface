@@ -7,7 +7,7 @@ Adding Animation while transitioning from sign up page to home page.
 Using Fade Transition widget and Page Route builder in flutter.  
 
 To apply fade out while leaving sign up page and fade in while entering home page.
-I use two fade transition widgets, one for fade out and another for fade in.               
+I use two fade transitions, one for fade out and another for fade in.               
 My custom route in the end of the sign up page with custom curves.
 
 Animation video in assets folder &  
