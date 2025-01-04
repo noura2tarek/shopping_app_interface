@@ -20,26 +20,6 @@ class _HomePageState extends State<HomePage> {
   // Cart items List
   final List<String> _cartItems = [];
 
-  // toggle item in cart function
-  void onToggleItemInCart(String itemName) {
-    var isExist = _cartItems.contains(itemName);
-    if (isExist) {
-      setState(() {
-        _cartItems.remove(itemName);
-      });
-      ScaffoldMessenger.of(context).showSnackBar(
-        customSnackBar(text: 'Item removed from the cart'),
-      );
-    } else {
-      setState(() {
-        _cartItems.add(itemName);
-      });
-      ScaffoldMessenger.of(context).showSnackBar(
-        customSnackBar(text: 'Item added to the cart successfully'),
-      );
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -77,7 +57,7 @@ class _HomePageState extends State<HomePage> {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 7.0),
               child: ProductsGridView(
-                  onToggleItemInCartFunction: onToggleItemInCart),
+                  onToggleItemInCartFunction: _onToggleItemInCart),
             ),
             /* --- Hot offers text ---*/
             CustomText(text: AppStrings.hotOffers),
@@ -93,6 +73,28 @@ class _HomePageState extends State<HomePage> {
         ),
       ),
     );
+  }
+
+  ////////////////////////////
+  //----------- Methods--------------//
+  // toggle item in cart function
+  void _onToggleItemInCart(String itemName) {
+    var isExist = _cartItems.contains(itemName);
+    if (isExist) {
+      setState(() {
+        _cartItems.remove(itemName);
+      });
+      ScaffoldMessenger.of(context).showSnackBar(
+        customSnackBar(text: AppStrings.itemRemoved),
+      );
+    } else {
+      setState(() {
+        _cartItems.add(itemName);
+      });
+      ScaffoldMessenger.of(context).showSnackBar(
+        customSnackBar(text: AppStrings.itemAdded),
+      );
+    }
   }
 }
 

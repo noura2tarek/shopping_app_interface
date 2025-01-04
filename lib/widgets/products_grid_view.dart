@@ -10,7 +10,7 @@ class ProductsGridView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GridView.builder(
-      itemCount: products.length,
+      itemCount: productsImages.length,
       scrollDirection: Axis.vertical,
       physics: NeverScrollableScrollPhysics(),
       shrinkWrap: true,
@@ -24,7 +24,7 @@ class ProductsGridView extends StatelessWidget {
       itemBuilder: (context, index) {
         /* --------- Grid view card item -------*/
         return GridViewItem(
-          imageLink: products[index],
+          imageLink: productsImages[index],
           name: imagesText[index],
           onTap: () {
             onToggleItemInCartFunction(imagesText[index]);
