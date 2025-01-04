@@ -57,7 +57,7 @@ class _HomePageState extends State<HomePage> {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 7.0),
               child: ProductsGridView(
-                  onToggleItemInCartFunction: onToggleItemInCart,
+                onToggleItemInCartFunction: onToggleItemInCart,
               ),
             ),
             /* --- Hot offers text ---*/
