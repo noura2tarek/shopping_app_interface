@@ -7,7 +7,8 @@ const List<String> images = [
   'https://images.pexels.com/photos/25772338/pexels-photo-25772338/free-photo-of-macbook-and-earaphones.jpeg?auto=compress&cs=tinysrgb&w=600',
   'https://images.pexels.com/photos/2651794/pexels-photo-2651794.jpeg?auto=compress&cs=tinysrgb&w=600',
 ];
- List<String> imagesText = [
+
+List<String> imagesText = [
   '23'.tr(),
   '24'.tr(),
   '25'.tr(),
@@ -16,7 +17,7 @@ const List<String> images = [
   '28'.tr(),
 ];
 
-const List<String> products = [
+const List<String> productsImages = [
   // iphone
   'https://student.valuxapps.com/storage/uploads/products/1615440322npwmU.71DVgBTdyLL._SL1500_.jpg',
   // Apple mac book

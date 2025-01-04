@@ -15,7 +15,7 @@ class _ProductsGridViewState extends State<ProductsGridView> {
   @override
   Widget build(BuildContext context) {
     return GridView.builder(
-      itemCount: products.length,
+      itemCount: productsImages.length,
       scrollDirection: Axis.vertical,
       physics: NeverScrollableScrollPhysics(),
       shrinkWrap: true,
@@ -29,7 +29,7 @@ class _ProductsGridViewState extends State<ProductsGridView> {
       itemBuilder: (context, index) {
         /* --------- Grid view card item -------*/
         return GridViewItem(
-          imageLink: products[index],
+          imageLink: productsImages[index],
           name: imagesText[index],
           onTap: () {
             widget.onToggleItemInCartFunction(imagesText[index]);
