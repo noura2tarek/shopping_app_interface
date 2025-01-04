@@ -127,22 +127,7 @@ class _SignUpPageState extends State<SignUpPage> {
                           nameController: _nameController,
                           onPressed: () {
                             if (_formKey.currentState!.validate()) {
-                              showDialog(
-                                context: context,
-                                builder: (context) {
-                                  return MyAlertDialog(
-                                    onPressedCancel: () {
-                                      Navigator.pushAndRemoveUntil(
-                                        context,
-                                        MaterialPageRoute(
-                                          builder: (context) => HomePage(),
-                                        ),
-                                        (route) => false,
-                                      );
-                                    },
-                                  );
-                                },
-                              );
+                              buildShowDialog(context);
                             }
                           },
                         ),
@@ -158,7 +143,7 @@ class _SignUpPageState extends State<SignUpPage> {
     );
   }
 
-  //--------- Methods ----------//
+  //------------------ Methods --------------------//
   changePasswordVisibility() {
     setState(() {
       isPasswordSecure = !isPasswordSecure;
@@ -175,6 +160,26 @@ class _SignUpPageState extends State<SignUpPage> {
           ? Icons.visibility_outlined
           : Icons.visibility_off_outlined;
     });
+  }
+
+  //------- Build Show Dialog Method -------//
+  Future<dynamic> buildShowDialog(BuildContext context) {
+    return showDialog(
+      context: context,
+      builder: (context) {
+        return MyAlertDialog(
+          onPressedCancel: () {
+            Navigator.pushAndRemoveUntil(
+              context,
+              MaterialPageRoute(
+                builder: (context) => HomePage(),
+              ),
+              (route) => false,
+            );
+          },
+        );
+      },
+    );
   }
 }
 /*---------- End of the sign up page widget -------------*/
