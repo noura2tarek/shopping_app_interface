@@ -129,43 +129,7 @@ class _SignUpPageState extends State<SignUpPage> {
                           onPressed: () {
                             if (_formKey.currentState!.validate()) {
                               //-- Show the alert dialog --//
-                              showDialog(
-                                context: context,
-                                builder: (context) {
-                                  return MyAlertDialog(
-                                    onPressedCancel: () {
-                                      // Navigator.of(context).pop();
-                                      // Fade transition
-                                      /////////////////////////////////
-                                      Navigator.of(context).pushAndRemoveUntil(
-                                        CustomPageRoute(HomePage()),
-                                        (Route<dynamic> route) => false,
-                                      );
-                                      // Navigator.pushReplacement(
-                                      //   context,
-                                      //   MaterialPageRoute(
-                                      //     builder: (context) {
-                                      //       // Adds a FadeEffect that animates the opacity of the target
-                                      //       // between the specified begin value and 1.
-                                      //       return Animate(
-                                      //         effects: [
-                                      //           // fade in
-                                      //           FadeEffect(
-                                      //             begin: 0.0,
-                                      //             delay: Duration(milliseconds: 40),
-                                      //             duration: 600.ms,
-                                      //             curve: Curves.easeInOutSine,
-                                      //           ),
-                                      //         ],
-                                      //         child: HomePage(),
-                                      //       );
-                                      //     },
-                                      //   ),
-                                      // );
-                                    },
-                                  );
-                                },
-                              );
+                              buildShowDialog(context);
                             }
                           },
                         ),
@@ -181,7 +145,7 @@ class _SignUpPageState extends State<SignUpPage> {
     );
   }
 
-  ////////////// Methods ////////////////
+  //--------------- Methods ---------------//
   _changePasswordVisibility() {
     setState(() {
       isPasswordSecure = !isPasswordSecure;
@@ -198,6 +162,47 @@ class _SignUpPageState extends State<SignUpPage> {
           ? Icons.visibility_outlined
           : Icons.visibility_off_outlined;
     });
+  }
+
+  //-- Build Show alert dialog method --//
+  Future<dynamic> buildShowDialog(BuildContext context) {
+    return showDialog(
+      context: context,
+      builder: (context) {
+        return MyAlertDialog(
+          onPressedCancel: () {
+             Navigator.of(context).pop();
+            // Fade transition
+            /////////////////////////////////
+            Navigator.of(context).pushAndRemoveUntil(
+              CustomPageRoute(HomePage()),
+              (Route<dynamic> route) => false,
+            );
+            // Navigator.pushReplacement(
+            //   context,
+            //   MaterialPageRoute(
+            //     builder: (context) {
+            //       // Adds a FadeEffect that animates the opacity of the target
+            //       // between the specified begin value and 1.
+            //       return Animate(
+            //         effects: [
+            //           // fade in
+            //           FadeEffect(
+            //             begin: 0.0,
+            //             delay: Duration(milliseconds: 40),
+            //             duration: 600.ms,
+            //             curve: Curves.easeInOutSine,
+            //           ),
+            //         ],
+            //         child: HomePage(),
+            //       );
+            //     },
+            //   ),
+            // );
+          },
+        );
+      },
+    );
   }
 }
 /*---------------- End of the Sign up page widget ------------------*/
@@ -226,8 +231,13 @@ class CustomPageRoute<T> extends PageRoute<T> {
   @override
   bool get maintainState => true;
 
+  // fade in duration
   @override
-  Duration get transitionDuration => Duration(seconds: 1);
+  Duration get transitionDuration => Duration(seconds: 2);
+
+  // fade out duration
+  @override
+  Duration get reverseTransitionDuration => Duration(seconds: 2);
 
   @override
   Widget buildTransitions(BuildContext context, Animation<double> animation,
