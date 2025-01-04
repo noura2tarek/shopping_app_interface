@@ -19,5 +19,5 @@ The fonts and images used in assets folder.
 The shopping interface output in images folder.                  
 Other App components is stored in lib/utils folder.
                                
-Note 1 ---> the sign up page task in the same repository in branch sign_up_feature
-Note 2 ---> the localization task in the same repository in branch localization
+Note 1 ---> the sign up page task in the same repository in branch sign_up_feature.     
+Note 2 ---> the localization task in the same repository in branch localization.     
