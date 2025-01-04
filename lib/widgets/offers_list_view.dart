@@ -1,5 +1,5 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import '../utils/app_strings.dart';
 import 'list_view_item.dart';
 
 class OffersListView extends StatelessWidget {
@@ -18,7 +18,7 @@ class OffersListView extends StatelessWidget {
         return ListViewItem(
           imageLink:
               'https://student.valuxapps.com/storage/uploads/banners/1732574054JUQcm.6.jpg',
-          text: AppStrings.sportsOffer,
+          text: '3'.tr(),
         );
       },
       separatorBuilder: (context, index) => const SizedBox(

@@ -1,6 +1,6 @@
 //-- Sign Up button widget --//
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:shopping_app_interface/utils/app_strings.dart';
 import '../../utils/app_colors.dart';
 
 class SignUpButton extends StatelessWidget {
@@ -26,7 +26,7 @@ class SignUpButton extends StatelessWidget {
       ),
       onPressed: onPressed,
       child: Text(
-        AppStrings.signUp,
+        '4'.tr(),
         style: TextStyle(
           color: AppColors.white,
           fontWeight: FontWeight.bold,

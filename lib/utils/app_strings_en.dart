@@ -1,4 +1,4 @@
-class AppStrings {
+class AppStringsEn {
   static const String ourProducts = 'Our Products';
   static const String hotOffers = 'Hot Offers';
   static const String sportsOffer = 'Sports Offer';
@@ -20,4 +20,5 @@ class AppStrings {
   static const String accountCreatedSuccessfully = 'Account created successfully!';
   static const String success = 'Success';
   static const String close = 'Close';
+  static const String changeLanguage = 'Change Language';
 }

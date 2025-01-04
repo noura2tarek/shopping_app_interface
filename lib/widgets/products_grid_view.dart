@@ -2,11 +2,16 @@ import 'package:flutter/material.dart';
 import '../utils/lists.dart';
 import 'grid_view_item.dart';
 
-class ProductsGridView extends StatelessWidget {
+class ProductsGridView extends StatefulWidget {
   const ProductsGridView({super.key, required this.onToggleItemInCartFunction});
 
   final void Function(String itemName) onToggleItemInCartFunction;
 
+  @override
+  State<ProductsGridView> createState() => _ProductsGridViewState();
+}
+
+class _ProductsGridViewState extends State<ProductsGridView> {
   @override
   Widget build(BuildContext context) {
     return GridView.builder(
@@ -27,7 +32,7 @@ class ProductsGridView extends StatelessWidget {
           imageLink: products[index],
           name: imagesText[index],
           onTap: () {
-            onToggleItemInCartFunction(imagesText[index]);
+            widget.onToggleItemInCartFunction(imagesText[index]);
           },
         );
       },
