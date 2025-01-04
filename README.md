@@ -1,7 +1,5 @@
 # shopping_app_interface
 
-# sign_up
-
 # localization
 
 Flutter Task6:         
