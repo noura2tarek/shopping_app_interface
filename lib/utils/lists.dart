@@ -1,3 +1,5 @@
+import 'package:shopping_app_interface/utils/app_strings.dart';
+
 const List<String> images = [
   'https://images.pexels.com/photos/1038628/pexels-photo-1038628.jpeg?auto=compress&cs=tinysrgb&w=600',
   'https://images.pexels.com/photos/90946/pexels-photo-90946.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
@@ -6,12 +8,12 @@ const List<String> images = [
   'https://images.pexels.com/photos/2651794/pexels-photo-2651794.jpeg?auto=compress&cs=tinysrgb&w=600',
 ];
 const List<String> imagesText = [
-  'Apple iPhone 12 Pro Max 256GB 6 GB RAM, Pacific Blue',
-  'Apple MacBook Pro',
-  'JBL Xtreme 2 Portable Waterproof Bluetooth Speaker - Blue JBLXTREME2BLUAM',
-  'Samsung 65 Inch Smart TV 4K Ultra HD Curved - UA65RU7300RXUM',
-  'Nikon FX-format D750 - 24.3 MP, SLR Camera 24-120mm Lens, Black',
-  'Kingston A400 Internal SSD 2.5 240GB SATA 3 - SA400S37/240G',
+  AppStrings.text1,
+  AppStrings.text2,
+  AppStrings.text3,
+  AppStrings.text4,
+  AppStrings.text5,
+  AppStrings.text6,
 ];
 const List<String> products = [
   // iphone

@@ -129,7 +129,7 @@ class _SignUpPageState extends State<SignUpPage> {
                           onPressed: () {
                             if (_formKey.currentState!.validate()) {
                               //-- Show the alert dialog --//
-                              buildShowDialog(context);
+                              _buildShowDialog(context);
                             }
                           },
                         ),
@@ -165,40 +165,17 @@ class _SignUpPageState extends State<SignUpPage> {
   }
 
   //-- Build Show alert dialog method --//
-  Future<dynamic> buildShowDialog(BuildContext context) {
+  Future<dynamic> _buildShowDialog(BuildContext context) {
     return showDialog(
       context: context,
       builder: (context) {
         return MyAlertDialog(
           onPressedCancel: () {
-             Navigator.of(context).pop();
             // Fade transition
-            /////////////////////////////////
             Navigator.of(context).pushAndRemoveUntil(
-              CustomPageRoute(HomePage()),
+              createRoute(child: HomePage()),
               (Route<dynamic> route) => false,
             );
-            // Navigator.pushReplacement(
-            //   context,
-            //   MaterialPageRoute(
-            //     builder: (context) {
-            //       // Adds a FadeEffect that animates the opacity of the target
-            //       // between the specified begin value and 1.
-            //       return Animate(
-            //         effects: [
-            //           // fade in
-            //           FadeEffect(
-            //             begin: 0.0,
-            //             delay: Duration(milliseconds: 40),
-            //             duration: 600.ms,
-            //             curve: Curves.easeInOutSine,
-            //           ),
-            //         ],
-            //         child: HomePage(),
-            //       );
-            //     },
-            //   ),
-            // );
           },
         );
       },
@@ -208,43 +185,47 @@ class _SignUpPageState extends State<SignUpPage> {
 /*---------------- End of the Sign up page widget ------------------*/
 
 //-- Create Custom page route to apply custom fade transition --//
-class CustomPageRoute<T> extends PageRoute<T> {
-  CustomPageRoute(this.child);
+class DelayedCurve extends Curve {
+  const DelayedCurve() : super();
 
   @override
-  Color get barrierColor => Colors.black;
-
-  @override
-  String? get barrierLabel => null;
-
-  final Widget child;
-
-  @override
-  Widget buildPage(BuildContext context, Animation<double> animation,
-      Animation<double> secondaryAnimation) {
-    return FadeTransition(
-      opacity: animation,
-      child: child,
-    );
+  double transformInternal(double t) {
+    if (t < 0.5) {
+      return 0.0;
+    } else {
+      return (t - 0.5) * 2.0;
+    }
   }
+}
+
+class CurveDelayed extends Curve {
+  const CurveDelayed() : super();
 
   @override
-  bool get maintainState => true;
-
-  // fade in duration
-  @override
-  Duration get transitionDuration => Duration(seconds: 2);
-
-  // fade out duration
-  @override
-  Duration get reverseTransitionDuration => Duration(seconds: 2);
-
-  @override
-  Widget buildTransitions(BuildContext context, Animation<double> animation,
-      Animation<double> secondaryAnimation, Widget child) {
-    return FadeTransition(
-      opacity: animation,
-      child: child,
-    );
+  double transformInternal(double t) {
+    if (t > 0.5) {
+      return 1.0;
+    } else {
+      return t * 2;
+    }
   }
+}
+
+Route createRoute({required Widget child}) {
+  return PageRouteBuilder(
+    transitionDuration: Duration(milliseconds: 2500),
+    reverseTransitionDuration: Duration(milliseconds: 2500),
+    pageBuilder: (context, animation, secondaryAnimation) => child,
+    transitionsBuilder: (context, animation, secondaryAnimation, child) {
+      return FadeTransition(
+        opacity: animation.drive(Tween<double>(begin: 0, end: 1)
+            .chain(CurveTween(curve: const DelayedCurve()))),
+        child: FadeTransition(
+          opacity: secondaryAnimation.drive(Tween<double>(begin: 1, end: 0)
+              .chain(CurveTween(curve: const CurveDelayed()))),
+          child: child,
+        ),
+      );
+    },
+  );
 }
