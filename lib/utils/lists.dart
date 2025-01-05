@@ -1,20 +1,9 @@
-import 'package:easy_localization/easy_localization.dart';
-
 const List<String> images = [
   'https://images.pexels.com/photos/1038628/pexels-photo-1038628.jpeg?auto=compress&cs=tinysrgb&w=600',
   'https://images.pexels.com/photos/90946/pexels-photo-90946.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
   'https://images.pexels.com/photos/2115256/pexels-photo-2115256.jpeg?auto=compress&cs=tinysrgb&w=600',
   'https://images.pexels.com/photos/25772338/pexels-photo-25772338/free-photo-of-macbook-and-earaphones.jpeg?auto=compress&cs=tinysrgb&w=600',
   'https://images.pexels.com/photos/2651794/pexels-photo-2651794.jpeg?auto=compress&cs=tinysrgb&w=600',
-];
-
-List<String> imagesText = [
-  '23'.tr(),
-  '24'.tr(),
-  '25'.tr(),
-  '26'.tr(),
-  '27'.tr(),
-  '28'.tr(),
 ];
 
 const List<String> productsImages = [

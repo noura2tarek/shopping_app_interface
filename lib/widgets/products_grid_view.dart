@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import '../utils/lists.dart';
 import 'grid_view_item.dart';
@@ -14,6 +15,15 @@ class ProductsGridView extends StatefulWidget {
 class _ProductsGridViewState extends State<ProductsGridView> {
   @override
   Widget build(BuildContext context) {
+    // images texts list
+    List<String> imagesText = [
+      '23'.tr(),
+      '24'.tr(),
+      '25'.tr(),
+      '26'.tr(),
+      '27'.tr(),
+      '28'.tr(),
+    ];
     return GridView.builder(
       itemCount: productsImages.length,
       scrollDirection: Axis.vertical,
