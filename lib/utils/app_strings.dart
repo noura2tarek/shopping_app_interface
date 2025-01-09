@@ -35,4 +35,9 @@ class AppStrings {
       'Nikon FX-format D750 - 24.3 MP, SLR Camera 24-120mm Lens, Black';
   static const String text6 =
       'Kingston A400 Internal SSD 2.5 240GB SATA 3 - SA400S37/240G';
+  static const String fullName = 'Full Name';
+  static const String email = 'Email';
+  static const String password = 'Password';
+  static const String confirmPassword = 'Confirm Password';
 }
+
