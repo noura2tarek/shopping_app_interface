@@ -59,6 +59,8 @@ class _SignUpPageState extends State<SignUpPage> {
                     controller: _nameController,
                     keyboardType: TextInputType.name,
                     hintText: '5'.tr(),
+                    labelText: '29'.tr(),
+                    prefixWidget: Icon(Icons.person_outline),
                     validator: (value) {
                       if (value!.isEmpty) {
                         return '6'.tr();
@@ -74,6 +76,8 @@ class _SignUpPageState extends State<SignUpPage> {
                     controller: _emailController,
                     keyboardType: TextInputType.emailAddress,
                     hintText: '8'.tr(),
+                    labelText: '30'.tr(),
+                    prefixWidget: Icon(Icons.email_outlined),
                     validator: (value) {
                       if (value!.isEmpty) {
                         return '9'.tr();
@@ -93,6 +97,8 @@ class _SignUpPageState extends State<SignUpPage> {
                     keyboardType: TextInputType.visiblePassword,
                     suffixPressed: _changePasswordVisibility,
                     hintText: '11'.tr(),
+                    labelText: '31'.tr(),
+                    prefixWidget: Icon(Icons.lock_outline),
                     validator: (value) {
                       if (value!.isEmpty) {
                         return '12'.tr();
@@ -112,6 +118,8 @@ class _SignUpPageState extends State<SignUpPage> {
                     keyboardType: TextInputType.visiblePassword,
                     suffixPressed: _changeConfirmPasswordVisibility,
                     hintText: '14'.tr(),
+                    labelText: '32'.tr(),
+                    prefixWidget: Icon(Icons.lock_outline),
                     validator: (value) {
                       if (value!.isEmpty) {
                         return null;

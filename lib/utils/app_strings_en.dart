@@ -21,4 +21,8 @@ class AppStringsEn {
   static const String success = 'Success';
   static const String close = 'Close';
   static const String changeLanguage = 'Change Language';
+  static const String fullName = 'Full Name';
+  static const String email = 'Email';
+  static const String password = 'Password';
+  static const String confirmPassword = 'Confirm Password';
 }
