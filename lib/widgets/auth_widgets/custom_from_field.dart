@@ -11,6 +11,8 @@ class CustomFromField extends StatelessWidget {
     this.suffixIcon,
     this.secure = false,
     this.isPassword = false,
+    this.labelText = '',
+    this.prefixWidget,
   });
 
   final String hintText;
@@ -21,6 +23,8 @@ class CustomFromField extends StatelessWidget {
   final bool isPassword;
   final void Function()? suffixPressed;
   final IconData? suffixIcon;
+  final String labelText;
+  final Widget? prefixWidget;
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +38,9 @@ class CustomFromField extends StatelessWidget {
           obscureText: secure,
           decoration: InputDecoration(
             hintText: hintText,
+            labelText: labelText,
             hintStyle: TextStyle(fontSize: 14.0),
+            prefixIcon: prefixWidget,
             border: OutlineInputBorder(
               borderRadius: BorderRadius.all(Radius.circular(10.0)),
             ),

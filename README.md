@@ -10,8 +10,8 @@ To apply fade out while leaving sign up page and fade in while entering home pag
 I use two fade transitions, one for fade out and another for fade in.               
 My custom route in the end of the sign up page with custom curves.
 
-Animation video in assets folder &  
-in https://drive.google.com/file/d/1n59s9dg1CWm4en3zXLIqfw6a42XECEjJ/view?usp=sharing.
+Animation video in assets/videos folder &  
+in https://drive.google.com/file/d/1jTUgUgCUnObu7ubsGV7qGnsgXD5FskeD/view?usp=sharing.
     
 The widgets in lib/widgets folder.      
 The screens in lib/screens folder. 

@@ -54,6 +54,8 @@ class _SignUpPageState extends State<SignUpPage> {
                       controller: _nameController,
                       keyboardType: TextInputType.name,
                       hintText: AppStrings.enterYourFullName,
+                      labelText: AppStrings.fullName,
+                      prefixWidget: Icon(Icons.person_outlined),
                       validator: (value) {
                         if (value!.isEmpty) {
                           return AppStrings.pleaseEnterYourName;
@@ -69,6 +71,8 @@ class _SignUpPageState extends State<SignUpPage> {
                       controller: _emailController,
                       keyboardType: TextInputType.emailAddress,
                       hintText: AppStrings.enterYourEmail,
+                      labelText: AppStrings.email,
+                      prefixWidget: Icon(Icons.email_outlined),
                       validator: (value) {
                         if (value!.isEmpty) {
                           return AppStrings.pleaseEnterYourEmail;
@@ -88,6 +92,8 @@ class _SignUpPageState extends State<SignUpPage> {
                       keyboardType: TextInputType.visiblePassword,
                       suffixPressed: _changePasswordVisibility,
                       hintText: AppStrings.enterYourPassword,
+                      labelText: AppStrings.password,
+                      prefixWidget: Icon(Icons.lock_outline),
                       validator: (value) {
                         if (value!.isEmpty) {
                           return AppStrings.passwordsCannotBeEmpty;
@@ -107,6 +113,8 @@ class _SignUpPageState extends State<SignUpPage> {
                       keyboardType: TextInputType.visiblePassword,
                       suffixPressed: _changeConfirmPasswordVisibility,
                       hintText: AppStrings.enterYourConfirmPassword,
+                      labelText: AppStrings.confirmPassword,
+                      prefixWidget: Icon(Icons.lock_outline),
                       validator: (value) {
                         if (value!.isEmpty) {
                           return null;
