@@ -31,10 +31,19 @@ class _HomePageState extends State<HomePage> {
         ),
         actions: [
           //-- change locale icon button --//
-          ChangeLangButton(color: AppColors.mainColor,),
+          ChangeLangButton(
+            color: AppColors.mainColor,
+          ),
         ],
         backgroundColor: AppColors.black87,
         elevation: 1.0,
+        leading: IconButton(
+          onPressed: Navigator.of(context).pop,
+          icon: Icon(
+            Icons.arrow_back,
+            color: AppColors.mainColor,
+          ),
+        ),
       ),
       body: SingleChildScrollView(
         child: Column(
