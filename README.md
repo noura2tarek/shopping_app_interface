@@ -3,7 +3,7 @@
 # sign_up
 
 Flutter Task4:         
-Making a signup page to access the shopping screen.
+Making a signup page to access the shopping screen.                                    
 The sign up page design includes name form field, email form field, password form field, and confirm
 password form field (using TextFormField widget) and a sign up button.
 
