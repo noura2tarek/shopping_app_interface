@@ -6,7 +6,7 @@
 
 Adding firebase authentication for the shopping app:
                          
-Project configuration with firebase --> done using the flutterfire CLI and flutterfire configure
+**Project configuration with firebase** --> done using the flutterfire CLI and flutterfire configure
 command.
 
 After the project is configured, firebase options file is added to lib folder.
@@ -14,15 +14,15 @@ Then, we add firebase core and firebase auth packages to the pubspec.yaml file.
 
 And i initialize firebase in main.dart file.                       
                                                  
-**Sign up screen:**                                             
-Sign up using firebase auth using create user with email and password method.
+**Sign up screen**                                             
+Sign up using firebase auth using (create user with email and password) method.
 After creating an account successfully, the user is redirected to the login page.
 
-**Login screen:**                                                                       
-Login using firebase auth using sign in with email and password method.
+**Login screen**                                                                       
+Login using firebase auth using (sign in with email and password) method.
 After logging in successfully, the user is redirected to the home page.
                                                                                             
-**Log out function** is added in home page using actions in the app bar.               
+**Log out function** is added in home page using actions in the app bar.                                                          
                                                                                                    
 If any exception or error occurs, the error message is displayed in a Snack bar.
                                 
