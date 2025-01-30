@@ -14,7 +14,7 @@ Then, we add firebase core and firebase auth packages to the pubspec.yaml file.
 
 And i initialize firebase in main.dart file.                       
                                                  
-sign up screen:                                              
+Sign up screen:                                              
 Sign up using firebase auth using create user with email and password method.
 After creating an account successfully, the user is redirected to the login page.
 
