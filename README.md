@@ -14,15 +14,15 @@ Then, we add firebase core and firebase auth packages to the pubspec.yaml file.
 
 And i initialize firebase in main.dart file.                       
                                                  
-Sign up screen:                                              
+**Sign up screen:**                                             
 Sign up using firebase auth using create user with email and password method.
 After creating an account successfully, the user is redirected to the login page.
 
-Login screen:                                                                       
+**Login screen:**                                                                       
 Login using firebase auth using sign in with email and password method.
 After logging in successfully, the user is redirected to the home page.
                                                                                             
-Log out function is added in home page using actions in the app bar.
+**Log out function** is added in home page using actions in the app bar.
 If any exception or error occurs, the error message is displayed in a Snack bar.
                                 
 The code validates some conditions to ensure successful sign up.       
@@ -37,8 +37,8 @@ The widgets in lib/widgets folder.
 The screens in lib/screens folder.                   
 The auth with firebase task output in images folder.            
 Other App components is stored in lib/utils folder.
----------------------------------------
 
+---------------------------------------
 # Packages used:
 
 firebase_core: to use the Firebase Core API --> https://pub.dev/packages/firebase_core
