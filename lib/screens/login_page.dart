@@ -1,40 +1,33 @@
-import 'dart:developer';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:shopping_app_interface/screens/login_page.dart';
+import 'package:shopping_app_interface/screens/sign_up_page.dart';
 import 'package:shopping_app_interface/widgets/custom_snack_bar.dart';
 import '../utils/app_strings.dart';
-import '../widgets/auth_widgets/alert_dialog.dart';
 import '../widgets/auth_widgets/custom_from_field.dart';
 import '../widgets/auth_widgets/auth_button.dart';
+import 'home_page.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
-class SignUpPage extends StatefulWidget {
-  const SignUpPage({super.key});
+class LoginPage extends StatefulWidget {
+  const LoginPage({super.key});
 
   @override
-  State<SignUpPage> createState() => _SignUpPageState();
+  State<LoginPage> createState() => _LoginPageState();
 }
 
-class _SignUpPageState extends State<SignUpPage> {
-  late final TextEditingController _nameController;
+class _LoginPageState extends State<LoginPage> {
   late final TextEditingController _emailController;
   late final TextEditingController _passwordController;
-  late final TextEditingController _confirmPasswordController;
 
   bool isPasswordSecure = true;
-  bool isConfirmPasswordSecure = true;
   IconData passwordSuffix = Icons.visibility_outlined;
-  IconData confirmPasswordSuffix = Icons.visibility_outlined;
-  final _formKey = GlobalKey<FormState>();
-  late final UserCredential? credential;
+  late final GlobalKey<FormState> _formKey;
   bool _isLoading = false;
 
   @override
-  initState() {
-    _nameController = TextEditingController();
+  void initState() {
     _emailController = TextEditingController();
     _passwordController = TextEditingController();
-    _confirmPasswordController = TextEditingController();
+    _formKey = GlobalKey<FormState>();
     super.initState();
   }
 
@@ -52,7 +45,7 @@ class _SignUpPageState extends State<SignUpPage> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      AppStrings.signUp,
+                      'Login',
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 30.0,
@@ -60,23 +53,6 @@ class _SignUpPageState extends State<SignUpPage> {
                     ),
                     const SizedBox(
                       height: 25.0,
-                    ),
-                    /*------------- Full Name Text Field -------------*/
-                    CustomFromField(
-                      controller: _nameController,
-                      keyboardType: TextInputType.name,
-                      hintText: AppStrings.enterYourFullName,
-                      labelText: AppStrings.fullName,
-                      prefixWidget: Icon(Icons.person_outlined),
-                      validator: (value) {
-                        if (value!.isEmpty) {
-                          return AppStrings.pleaseEnterYourName;
-                        } else if (value[0] != value[0].toUpperCase()) {
-                          return AppStrings.fullNameMustStart;
-                        } else {
-                          return null;
-                        }
-                      },
                     ),
                     /*------------ Email Text Field ------------*/
                     CustomFromField(
@@ -109,36 +85,12 @@ class _SignUpPageState extends State<SignUpPage> {
                       validator: (value) {
                         if (value!.isEmpty) {
                           return AppStrings.passwordsCannotBeEmpty;
-                        } else if (value.length < 6) {
-                          return AppStrings.passwordsMustBeMore;
                         } else {
                           return null;
                         }
                       },
                     ),
-                    /*---------- Confirm Password Text Field ----------*/
-                    CustomFromField(
-                      controller: _confirmPasswordController,
-                      isPassword: true,
-                      secure: isConfirmPasswordSecure,
-                      suffixIcon: confirmPasswordSuffix,
-                      keyboardType: TextInputType.visiblePassword,
-                      suffixPressed: changeConfirmPasswordVisibility,
-                      hintText: AppStrings.enterYourConfirmPassword,
-                      labelText: AppStrings.confirmPassword,
-                      prefixWidget: Icon(Icons.lock_outline),
-                      validator: (value) {
-                        if (value!.isEmpty) {
-                          return null;
-                        }
-                        if (value.compareTo(_passwordController.text) != 0) {
-                          return AppStrings.passwordsNotMatch;
-                        } else {
-                          return null;
-                        }
-                      },
-                    ),
-                    /*---------- Sign Up Button ----------*/
+                    /*---------- Login Button ----------*/
                     Padding(
                       padding: const EdgeInsets.only(
                         top: 30.0,
@@ -148,69 +100,72 @@ class _SignUpPageState extends State<SignUpPage> {
                       child: SizedBox(
                         width: double.infinity,
                         child: AuthButton(
-                          buttonText: AppStrings.signUp,
+                          buttonText: AppStrings.login,
                           isLoading: _isLoading,
                           onPressed: () async {
                             if (_formKey.currentState!.validate()) {
-                              // register using firebase auth
-                              // Create new user with email and password
+                              // sign in using firebase auth
+                              // using email and password
                               try {
                                 setState(() {
                                   _isLoading = true;
                                 });
-
-                                credential = await FirebaseAuth.instance
-                                    .createUserWithEmailAndPassword(
+                                await FirebaseAuth.instance
+                                    .signInWithEmailAndPassword(
                                   email: _emailController.text,
                                   password: _passwordController.text,
                                 );
                                 setState(() {
                                   _isLoading = false;
                                 });
+                                // after successful login
+                                // navigate to home page
+                                Navigator.pushAndRemoveUntil(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => HomePage(),
+                                  ),
+                                  (route) => false,
+                                );
                               } on FirebaseAuthException catch (e) {
                                 setState(() {
                                   _isLoading = false;
                                 });
-                                if (e.code == 'weak-password') {
+                                if (e.code == 'user-not-found') {
                                   ScaffoldMessenger.of(context).showSnackBar(
                                     customSnackBar(
-                                      text: AppStrings.passwordProvidedIsWeak,
+                                      text: AppStrings.noUserFound,
                                     ),
                                   );
-                                } else if (e.code == 'email-already-in-use') {
+                                } else if (e.code == 'wrong-password') {
                                   ScaffoldMessenger.of(context).showSnackBar(
                                     customSnackBar(
-                                      text: AppStrings.theAccountAlreadyExists,
+                                      text: AppStrings.wrongPasswordProvided,
                                     ),
                                   );
                                 }
-                              } catch (e) {
-                                log(e.toString());
-                              }
-                              if (credential != null) {
-                                buildShowDialog(context);
                               }
                             }
                           },
                         ),
                       ),
                     ),
-                    // if the user have an account - login
+                    // if the user doesn't have an account -  sign up
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text(AppStrings.haveAccount),
-                        //-- login button --//
+                        Text(AppStrings.dontHaveAccount),
+                        //-- sign up button --//
                         TextButton(
                           onPressed: () {
                             Navigator.pushReplacement(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => LoginPage(),
+                                builder: (context) => SignUpPage(),
                               ),
                             );
                           },
-                          child: Text(AppStrings.login),
+                          child: Text(AppStrings.signUp),
                         ),
                       ],
                     ),
@@ -234,44 +189,12 @@ class _SignUpPageState extends State<SignUpPage> {
     });
   }
 
-  changeConfirmPasswordVisibility() {
-    setState(() {
-      isConfirmPasswordSecure = !isConfirmPasswordSecure;
-      confirmPasswordSuffix = isConfirmPasswordSecure
-          ? Icons.visibility_outlined
-          : Icons.visibility_off_outlined;
-    });
-  }
-
-  //------- Build Show Dialog Method -------//
-  Future<dynamic> buildShowDialog(BuildContext context) {
-    return showDialog(
-      context: context,
-      builder: (context) {
-        return MyAlertDialog(
-          onPressedCancel: () {
-            // After sign up go to login page
-            Navigator.pushAndRemoveUntil(
-              context,
-              MaterialPageRoute(
-                builder: (context) => LoginPage(),
-              ),
-              (route) => false,
-            );
-          },
-        );
-      },
-    );
-  }
-
   // dispose all the controllers
   @override
   dispose() {
-    _nameController.dispose();
     _emailController.dispose();
     _passwordController.dispose();
-    _confirmPasswordController.dispose();
     super.dispose();
   }
 }
-/*---------- End of the sign up page widget -------------*/
+/*---------- End of the login page widget -------------*/

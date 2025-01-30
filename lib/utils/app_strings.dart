@@ -39,5 +39,14 @@ class AppStrings {
   static const String email = 'Email';
   static const String password = 'Password';
   static const String confirmPassword = 'Confirm Password';
+  static const String dontHaveAccount = 'Don\'t have an account?';
+  static const String login = 'Login';
+  static const String haveAccount = 'Have an account?';
+  static const String passwordProvidedIsWeak =
+      'The password provided is too weak';
+  static const String theAccountAlreadyExists =
+      'The account already exists for that email.';
+  static const String noUserFound = 'No user found for that email.';
+  static const String wrongPasswordProvided =
+      'Wrong password provided for that user.';
 }
-

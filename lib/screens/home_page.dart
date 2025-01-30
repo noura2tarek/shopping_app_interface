@@ -1,4 +1,6 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:shopping_app_interface/screens/login_page.dart';
 import 'package:shopping_app_interface/utils/app_colors.dart';
 import 'package:shopping_app_interface/widgets/custom_network_image.dart';
 import 'package:shopping_app_interface/widgets/offers_list_view.dart';
@@ -30,6 +32,25 @@ class _HomePageState extends State<HomePage> {
         ),
         backgroundColor: AppColors.black87,
         elevation: 1.0,
+        actions: [
+          // log out button
+          IconButton(
+            onPressed: () async {
+              await FirebaseAuth.instance.signOut();
+              Navigator.pushAndRemoveUntil(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => LoginPage(),
+                ),
+                (route) => false,
+              );
+            },
+            icon: Icon(
+              Icons.logout,
+              color: AppColors.mainColor,
+            ),
+          ),
+        ],
       ),
       body: SingleChildScrollView(
         child: Column(
