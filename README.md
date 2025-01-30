@@ -36,7 +36,7 @@ The validations are:
  
 The widgets in lib/widgets folder.    
 The screens in lib/screens folder.                                                     
-The task output images in images folder.                           
+The task output images in assets/images folder.                           
 Other App components is stored in lib/utils folder.                
 
 ---------------------------------------
