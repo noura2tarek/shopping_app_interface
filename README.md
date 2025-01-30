@@ -21,6 +21,8 @@ Other App components is stored in lib/utils folder.
 
 Notes:
 ---------------------------------------------------
-Note 1 ---> the sign up page task in the same repository in branch sign_up_feature.     
-Note 2 ---> the animation task in the same repository in branch animation.     
-Note 3 ---> the localization task in the same repository in branch localization.     
+- Note 1 ---> the sign up page task in the same repository in branch sign_up_feature.     
+- Note 2 ---> the animation task in the same repository in branch animation.     
+- Note 3 ---> the localization task in the same repository in branch localization.
+- Note 4 ---> the firebase auth task in the same repository in branch login_with_Firebase_feature.     
+
