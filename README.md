@@ -5,7 +5,8 @@
 Adding profile with auth access to the app using local_auth package.:
 
 The user can go to profile page from the home page by clicking on the profile icon in the top
-right.                                                            
+right.                              
+This profile page contains user image, full name, and email.                                         
 The profile page added with a dummy data and it is accessible only to authenticated users.                        
 If the user device does not support biometric authentication, it will be redirected to the profile
 page (assuming that the user is authenticated).                                                     
