@@ -1,6 +1,10 @@
+import 'dart:developer';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:local_auth/local_auth.dart';
 import 'package:shopping_app_interface/screens/login_page.dart';
+import 'package:shopping_app_interface/screens/profile_page.dart';
 import 'package:shopping_app_interface/utils/app_colors.dart';
 import 'package:shopping_app_interface/widgets/custom_network_image.dart';
 import 'package:shopping_app_interface/widgets/offers_list_view.dart';
@@ -21,6 +25,74 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   // Cart items List
   final List<String> _cartItems = [];
+  late final LocalAuthentication auth;
+  bool _isAuthenticated = false;
+  bool _isAvailable = false;
+
+  // Check if the device supports biometrics or not
+  _checkAuthFeature() async {
+    try {
+      final bool canAuthenticateWithBiometrics = await auth.canCheckBiometrics;
+      final bool canAuthenticate =
+          canAuthenticateWithBiometrics || await auth.isDeviceSupported();
+      if (canAuthenticate || canAuthenticateWithBiometrics) {
+        log('Auth with biometrics feature is available');
+        _isAvailable = true;
+        setState(() {});
+      } else {
+        log('Auth with biometrics feature is not available');
+        _isAvailable = false;
+        setState(() {});
+      }
+    } on PlatformException catch (e) {
+      _isAvailable = false;
+      setState(() {});
+      log('Error occurred(can not authenticate): $e');
+    }
+  }
+
+  // Auth with biometrics fingerprint method
+  authWithBiometrics() async {
+    try {
+      if (!_isAvailable) {
+        // Assuming the user is authenticated
+        setState(() {
+          _isAuthenticated = true;
+        });
+        return;
+      }
+      // auth using fingerprint biometrics
+      final bool authenticated = await auth.authenticate(
+        localizedReason: 'Please Scan your fingerprint to authenticate',
+        options: const AuthenticationOptions(
+          biometricOnly: true,
+          useErrorDialogs: true,
+        ),
+      );
+      setState(() {
+        _isAuthenticated = authenticated;
+      });
+      if (_isAuthenticated) {
+        ScaffoldMessenger.of(context).showSnackBar(
+            customSnackBar(text: 'Authentication done successfully'));
+      }
+    } catch (e) {
+      // That means the user device does not support biometrics
+      // Assuming the user is authenticated
+      setState(() {
+        _isAuthenticated = true;
+      });
+      log('Authentication Error occurred: $e');
+    }
+  }
+
+  @override
+  void initState() {
+    // initialize local authentication
+    auth = LocalAuthentication();
+    _checkAuthFeature();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -31,6 +103,7 @@ class _HomePageState extends State<HomePage> {
           style: TextStyle(color: AppColors.mainColor),
         ),
         backgroundColor: AppColors.black87,
+        iconTheme: IconThemeData(color: AppColors.mainColor),
         elevation: 1.0,
         actions: [
           // log out button
@@ -47,8 +120,23 @@ class _HomePageState extends State<HomePage> {
             },
             icon: Icon(
               Icons.logout,
-              color: AppColors.mainColor,
             ),
+          ),
+          // profile icon
+          IconButton(
+            // fingerprint auth
+            // then go to profile
+            onPressed: () async {
+              await authWithBiometrics();
+              // if feature is not available go to profile
+              // if authenticated successfully, go to profile
+              if (_isAuthenticated) {
+                Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => ProfilePage(),
+                ));
+              }
+            },
+            icon: Icon(Icons.person),
           ),
         ],
       ),
@@ -96,9 +184,9 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  ////////////////////////////
-  //----------- Methods--------------//
-  // toggle item in cart function
+////////////////////////////
+//----------- Methods--------------//
+// toggle item in cart function
   void _onToggleItemInCart(String itemName) {
     var isExist = _cartItems.contains(itemName);
     if (isExist) {

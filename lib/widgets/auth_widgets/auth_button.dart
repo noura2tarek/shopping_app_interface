@@ -8,16 +8,18 @@ class AuthButton extends StatelessWidget {
     required this.buttonText,
     this.onPressed,
     required this.isLoading,
+    this.height = 45.0,
   });
 
   final String buttonText;
   final void Function()? onPressed;
   final bool isLoading;
+  final double height;
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 45.0,
+      height: height,
       child: OutlinedButton(
         style: OutlinedButton.styleFrom(
           backgroundColor: AppColors.mainColor,
