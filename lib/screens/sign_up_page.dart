@@ -89,7 +89,7 @@ class _SignUpPageState extends State<SignUpPage> {
                       secure: isPasswordSecure,
                       suffixIcon: passwordSuffix,
                       keyboardType: TextInputType.visiblePassword,
-                      suffixPressed: changePasswordVisibility,
+                      suffixPressed: _changePasswordVisibility,
                       hintText: AppStrings.enterYourPassword,
                       labelText: AppStrings.password,
                       prefixWidget: Icon(Icons.lock_outline),
@@ -110,7 +110,7 @@ class _SignUpPageState extends State<SignUpPage> {
                       secure: isConfirmPasswordSecure,
                       suffixIcon: confirmPasswordSuffix,
                       keyboardType: TextInputType.visiblePassword,
-                      suffixPressed: changeConfirmPasswordVisibility,
+                      suffixPressed: _changeConfirmPasswordVisibility,
                       hintText: AppStrings.enterYourConfirmPassword,
                       labelText: AppStrings.confirmPassword,
                       prefixWidget: Icon(Icons.lock_outline),
@@ -135,7 +135,7 @@ class _SignUpPageState extends State<SignUpPage> {
                           nameController: _nameController,
                           onPressed: () {
                             if (_formKey.currentState!.validate()) {
-                              buildShowDialog(context);
+                              _buildShowDialog(context);
                             }
                           },
                         ),
@@ -152,7 +152,7 @@ class _SignUpPageState extends State<SignUpPage> {
   }
 
   //------------------ Methods --------------------//
-  changePasswordVisibility() {
+  _changePasswordVisibility() {
     setState(() {
       isPasswordSecure = !isPasswordSecure;
       passwordSuffix = isPasswordSecure
@@ -161,7 +161,7 @@ class _SignUpPageState extends State<SignUpPage> {
     });
   }
 
-  changeConfirmPasswordVisibility() {
+  _changeConfirmPasswordVisibility() {
     setState(() {
       isConfirmPasswordSecure = !isConfirmPasswordSecure;
       confirmPasswordSuffix = isConfirmPasswordSecure
@@ -171,7 +171,7 @@ class _SignUpPageState extends State<SignUpPage> {
   }
 
   //------- Build Show Dialog Method -------//
-  Future<dynamic> buildShowDialog(BuildContext context) {
+  Future<dynamic> _buildShowDialog(BuildContext context) {
     return showDialog(
       context: context,
       builder: (context) {
