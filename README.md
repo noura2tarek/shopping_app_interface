@@ -1,46 +1,29 @@
 # Shopping_app_interface
 
-# Connect App to Firebase
+# Add Profile with auth access
 
-# Sign up and login using Firebase Authentication
+Adding profile with auth access to the app using local_auth package.:
 
-Adding firebase authentication for the shopping app:
-                         
-**Project configuration with firebase** --> done using the flutterfire CLI and flutterfire configure
-command.
+The user can go to profile page from the home page by clicking on the profile icon in the top
+right.
+The profile page added with a dummy data and it is accessible only to authenticated users.
+If the user device does not support biometric authentication, it will be redirected to the profile
+page (assuming that the user is authenticated).
 
-After the project is configured, firebase options file is added to lib folder.
-Then, we add firebase core and firebase auth packages to the pubspec.yaml file.
+If the user device supports biometric authentication, the user will be asked to scan his fingerprint
+for authentication using LocalAuthentication.authenticate() method in local_auth package.
 
-And i initialize firebase in main.dart file.                       
-                                                 
-**Sign up screen**                                             
-Sign up using firebase auth using (create user with email and password) method.                      
-After creating an account successfully, a dialog box appears to inform that the user is signed up successfully
-then the user is redirected to the login page.                       
-                                                                 
-**Login screen**                                                                       
-Login using firebase auth using (sign in with email and password) method.                      
-After logging in successfully, the user is redirected to the home page.
-                                                                                            
-**Log out function** is added in home page using actions in the app bar.                                                          
-                                                                                                   
-If any exception or error occurs, the error message is displayed in a Snack bar.                                 
-                                
-The code validates some conditions to ensure successful sign up.                                    
-The validations are:
-1- The first letter of the name must be capitalized.  
-2- The email field must contains @   
-3- The password field must have at least 6 characters.   
-4- The password and confirm password fields must be the same.
- 
+The Task output images with name (user_profile_output) in assets/images
+folder.
 The widgets in lib/widgets folder.    
-The screens in lib/screens folder.                                                     
-The task output images in assets/images folder.                           
-Other App components is stored in lib/utils folder.                
+The screens in lib/screens folder.
+Other App components is stored in lib/utils folder.
 
 ---------------------------------------
-# Packages used:                                         
 
-firebase_core: to use the Firebase Core API --> https://pub.dev/packages/firebase_core                                                                                             
+# Packages used:
+
+local_auth: for biometric authentication --> https://pub.dev/packages/local_auth
+firebase_core: to use the Firebase Core
+API --> https://pub.dev/packages/firebase_core                                                                                             
 firebase_auth: for firebase authentication ---> https://pub.dev/packages/firebase_auth
