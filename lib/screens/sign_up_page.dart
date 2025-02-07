@@ -102,7 +102,7 @@ class _SignUpPageState extends State<SignUpPage> {
                       secure: isPasswordSecure,
                       suffixIcon: passwordSuffix,
                       keyboardType: TextInputType.visiblePassword,
-                      suffixPressed: changePasswordVisibility,
+                      suffixPressed: _changePasswordVisibility,
                       hintText: AppStrings.enterYourPassword,
                       labelText: AppStrings.password,
                       prefixWidget: Icon(Icons.lock_outline),
@@ -123,7 +123,7 @@ class _SignUpPageState extends State<SignUpPage> {
                       secure: isConfirmPasswordSecure,
                       suffixIcon: confirmPasswordSuffix,
                       keyboardType: TextInputType.visiblePassword,
-                      suffixPressed: changeConfirmPasswordVisibility,
+                      suffixPressed: _changeConfirmPasswordVisibility,
                       hintText: AppStrings.enterYourConfirmPassword,
                       labelText: AppStrings.confirmPassword,
                       prefixWidget: Icon(Icons.lock_outline),
@@ -154,42 +154,10 @@ class _SignUpPageState extends State<SignUpPage> {
                             if (_formKey.currentState!.validate()) {
                               // register using firebase auth
                               // Create new user with email and password
-                              try {
-                                setState(() {
-                                  _isLoading = true;
-                                });
-
-                                credential = await FirebaseAuth.instance
-                                    .createUserWithEmailAndPassword(
-                                  email: _emailController.text,
-                                  password: _passwordController.text,
-                                );
-                                setState(() {
-                                  _isLoading = false;
-                                });
-                              } on FirebaseAuthException catch (e) {
-                                setState(() {
-                                  _isLoading = false;
-                                });
-                                if (e.code == 'weak-password') {
-                                  ScaffoldMessenger.of(context).showSnackBar(
-                                    customSnackBar(
-                                      text: AppStrings.passwordProvidedIsWeak,
-                                    ),
-                                  );
-                                } else if (e.code == 'email-already-in-use') {
-                                  ScaffoldMessenger.of(context).showSnackBar(
-                                    customSnackBar(
-                                      text: AppStrings.theAccountAlreadyExists,
-                                    ),
-                                  );
-                                }
-                              } catch (e) {
-                                log(e.toString());
-                              }
-                              if (credential != null) {
-                                buildShowDialog(context);
-                              }
+                              _signUp(
+                                email: _emailController.text,
+                                password: _passwordController.text,
+                              );
                             }
                           },
                         ),
@@ -225,7 +193,8 @@ class _SignUpPageState extends State<SignUpPage> {
   }
 
   //------------------ Methods --------------------//
-  changePasswordVisibility() {
+  // Change password visibility
+  _changePasswordVisibility() {
     setState(() {
       isPasswordSecure = !isPasswordSecure;
       passwordSuffix = isPasswordSecure
@@ -234,7 +203,8 @@ class _SignUpPageState extends State<SignUpPage> {
     });
   }
 
-  changeConfirmPasswordVisibility() {
+  // Change Confirm password visibility
+  _changeConfirmPasswordVisibility() {
     setState(() {
       isConfirmPasswordSecure = !isConfirmPasswordSecure;
       confirmPasswordSuffix = isConfirmPasswordSecure
@@ -243,8 +213,52 @@ class _SignUpPageState extends State<SignUpPage> {
     });
   }
 
+  //-- Sign up function --//
+  _signUp({
+    required String email,
+    required String password,
+  }) async {
+    try {
+      setState(() {
+        _isLoading = true;
+      });
+
+      credential = await FirebaseAuth.instance.createUserWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
+      setState(() {
+        _isLoading = false;
+      });
+    } on FirebaseAuthException catch (e) {
+      setState(() {
+        _isLoading = false;
+      });
+      if (e.code == 'weak-password') {
+        ScaffoldMessenger.of(context).showSnackBar(
+          customSnackBar(
+            text: AppStrings.passwordProvidedIsWeak,
+          ),
+        );
+      } else if (e.code == 'email-already-in-use') {
+        ScaffoldMessenger.of(context).showSnackBar(
+          customSnackBar(
+            text: AppStrings.theAccountAlreadyExists,
+          ),
+        );
+      }
+    } catch (e) {
+      log(e.toString());
+    }
+    if (credential != null) {
+      // if account is created successfully
+      // Show the success alert dialog
+      _buildShowDialog(context);
+    }
+  }
+
   //------- Build Show Dialog Method -------//
-  Future<dynamic> buildShowDialog(BuildContext context) {
+  Future<dynamic> _buildShowDialog(BuildContext context) {
     return showDialog(
       context: context,
       builder: (context) {
