@@ -43,10 +43,16 @@ class _HomePageState extends State<HomePage> {
         log('Auth with biometrics feature is not available');
         _isAvailable = false;
         setState(() {});
+        ScaffoldMessenger.of(context).showSnackBar(customSnackBar(
+            text:
+                'Auth with biometrics feature is not available on this device'));
       }
     } on PlatformException catch (e) {
       _isAvailable = false;
       setState(() {});
+      ScaffoldMessenger.of(context).showSnackBar(customSnackBar(
+          text:
+              'Authentication with biometrics is not available on this device'));
       log('Error occurred(can not authenticate): $e');
     }
   }
@@ -82,7 +88,9 @@ class _HomePageState extends State<HomePage> {
       setState(() {
         _isAuthenticated = true;
       });
-      log('Authentication Error occurred: $e');
+      ScaffoldMessenger.of(context).showSnackBar(customSnackBar(
+        text: 'Auth with biometrics feature is not available on this device',
+      ));
     }
   }
 
