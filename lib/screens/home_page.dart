@@ -57,7 +57,7 @@ class _HomePageState extends State<HomePage> {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 7.0),
               child: ProductsGridView(
-                onToggleItemInCartFunction: onToggleItemInCart,
+                onToggleItemInCartFunction: _onToggleItemInCart,
               ),
             ),
             /* --- Hot offers text ---*/
@@ -78,7 +78,7 @@ class _HomePageState extends State<HomePage> {
 
   //-------- Methods -------//
   // toggle item in cart function //
-  void onToggleItemInCart(String itemName) {
+  void _onToggleItemInCart(String itemName) {
     var isExist = _cartItems.contains(itemName);
     if (isExist) {
       setState(() {
