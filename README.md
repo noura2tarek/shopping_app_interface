@@ -19,10 +19,11 @@ The fonts and images used in assets folder.
 The shopping interface output in images folder.                  
 Other App components is stored in lib/utils folder.
 
-Notes:
+# Notes:
 ---------------------------------------------------
-- Note 1 ---> the sign up page task in the same repository in branch sign_up_feature.     
-- Note 2 ---> the animation task in the same repository in branch animation.     
-- Note 3 ---> the localization task in the same repository in branch localization.
-- Note 4 ---> the firebase auth task in the same repository in branch login_with_Firebase_feature.     
+- **Note 1** ---> **the sign up page task** in the same repository in branch sign_up_feature.              
+- **Note 2** ---> **the animation task** in animation branch.                   
+- **Note 3** ---> **the localization task** in localization branch.                  
+- **Note 4** ---> **the firebase auth task** in login_with_Firebase_feature branch.                    
+- **Note 5** ---> **the fingerprint auth task** in fingerprint_feature branch.                           
 
