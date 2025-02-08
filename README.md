@@ -20,9 +20,9 @@ for authentication using LocalAuthentication.authenticate() method in local_auth
  2- android.permission.USE_FINGERPRINT in AndroidManifest.xml file.                              
  3- android.permission.INTERNET in AndroidManifest.xml file.                                 
                                        
-**App Structure**:
+**App Structure**:                                            
 The Task output images with name (user_profile_output) in assets/images              
-folder.                                                                                        
+folder.                                                                                                   
 The widgets in lib/widgets folder.                     
 The screens in lib/screens folder.                                                 
 Other App components is stored in lib/utils folder.                                          
