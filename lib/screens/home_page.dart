@@ -73,6 +73,7 @@ class _HomePageState extends State<HomePage> {
         options: const AuthenticationOptions(
           biometricOnly: true,
           useErrorDialogs: true,
+          stickyAuth: true,
         ),
       );
       setState(() {
@@ -142,6 +143,9 @@ class _HomePageState extends State<HomePage> {
                 Navigator.of(context).push(MaterialPageRoute(
                   builder: (context) => ProfilePage(),
                 ));
+              } else if (!_isAuthenticated) {
+                ScaffoldMessenger.of(context)
+                    .showSnackBar(customSnackBar(text: 'Access denied'));
               }
             },
             icon: Icon(Icons.person),

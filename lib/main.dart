@@ -30,6 +30,8 @@ class _MyAppState extends State<MyApp> {
   void initState() {
     final user = FirebaseAuth.instance.currentUser;
     if (user != null) {
+      // if the user object is not null, then the user is signed in
+      // Redirect to Home Page
       startWidget = HomePage();
     }
     // listen to auth changes to check if the user is signed in
