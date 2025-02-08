@@ -14,6 +14,13 @@ page (assuming that the user is authenticated).
 If the user device supports biometric authentication, the user will be asked to scan his fingerprint
 for authentication using LocalAuthentication.authenticate() method in local_auth package.                                                   
 
+# Permissions Used:
+
+ 1- android.permission.USE_BIOMETRIC in AndroidManifest.xml file.                                     
+ 2- android.permission.USE_FINGERPRINT in AndroidManifest.xml file.                              
+ 3- android.permission.INTERNET in AndroidManifest.xml file.                                 
+                                       
+**App Structure**:
 The Task output images with name (user_profile_output) in assets/images              
 folder.                                                                                        
 The widgets in lib/widgets folder.                     
