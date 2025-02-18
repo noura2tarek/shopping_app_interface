@@ -16,10 +16,13 @@ The app also supports switching between Arabic and English languages using the c
 button.       
 The change language button is made using IconButton widget and it existed in the app bar.  
 It changes the locale using set Locale method in easy localization.      
-  
+
+# Packages Used
+easy_localization: For applying localization => https://pub.dev/packages/easy_localization.
+
+# Structure
 The widgets in lib/widgets folder.    
 The screens in lib/screens folder.                   
 The localization output in images folder with the name of 'loc_output'.           
 The font used is Suwannaphum.      
-The package used is easy_localization.      
 Other App components is stored in lib/utils folder.
