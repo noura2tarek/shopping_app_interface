@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:shopping_app_interface/utils/app_images.dart';
 import '../utils/app_colors.dart';
 import '../widgets/auth_widgets/auth_button.dart';
 import 'login_page.dart';
@@ -29,7 +30,7 @@ class ProfilePage extends StatelessWidget {
                 //-- User Photo --//
                 CircleAvatar(
                   radius: 50.0,
-                  backgroundImage: AssetImage('assets/images/user_photo.jpg'),
+                  backgroundImage: AssetImage(AppImages.userPhoto),
                 ),
                 //-- user name --//
                 Padding(

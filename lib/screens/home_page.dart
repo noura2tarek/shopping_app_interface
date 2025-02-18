@@ -44,15 +44,14 @@ class _HomePageState extends State<HomePage> {
         _isAvailable = false;
         setState(() {});
         ScaffoldMessenger.of(context).showSnackBar(customSnackBar(
-            text:
-                'Auth with biometrics feature is not available on this device'));
+          text: AppStrings.authNotAvailable,
+        ));
       }
     } on PlatformException catch (e) {
       _isAvailable = false;
       setState(() {});
-      ScaffoldMessenger.of(context).showSnackBar(customSnackBar(
-          text:
-              'Authentication with biometrics is not available on this device'));
+      ScaffoldMessenger.of(context)
+          .showSnackBar(customSnackBar(text: AppStrings.authNotAvailable));
       log('Error occurred(can not authenticate): $e');
     }
   }
@@ -69,7 +68,7 @@ class _HomePageState extends State<HomePage> {
       }
       // auth using fingerprint biometrics
       final bool authenticated = await auth.authenticate(
-        localizedReason: 'Please Scan your fingerprint to authenticate',
+        localizedReason: AppStrings.scanYourFingerprint,
         options: const AuthenticationOptions(
           biometricOnly: true,
           useErrorDialogs: true,
@@ -80,8 +79,9 @@ class _HomePageState extends State<HomePage> {
         _isAuthenticated = authenticated;
       });
       if (_isAuthenticated) {
-        ScaffoldMessenger.of(context).showSnackBar(
-            customSnackBar(text: 'Authentication done successfully'));
+        ScaffoldMessenger.of(context).showSnackBar(customSnackBar(
+          text: AppStrings.authenticationDone,
+        ));
       }
     } catch (e) {
       // That means the user device does not support biometrics
@@ -90,7 +90,7 @@ class _HomePageState extends State<HomePage> {
         _isAuthenticated = true;
       });
       ScaffoldMessenger.of(context).showSnackBar(customSnackBar(
-        text: 'Auth with biometrics feature is not available on this device',
+        text: AppStrings.authNotAvailable,
       ));
     }
   }
@@ -144,8 +144,9 @@ class _HomePageState extends State<HomePage> {
                   builder: (context) => ProfilePage(),
                 ));
               } else if (!_isAuthenticated) {
-                ScaffoldMessenger.of(context)
-                    .showSnackBar(customSnackBar(text: 'Access denied'));
+                ScaffoldMessenger.of(context).showSnackBar(customSnackBar(
+                  text: AppStrings.accessDenied,
+                ));
               }
             },
             icon: Icon(Icons.person),

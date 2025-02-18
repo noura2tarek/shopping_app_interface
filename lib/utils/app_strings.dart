@@ -49,4 +49,10 @@ class AppStrings {
   static const String noUserFound = 'No user found for that email.';
   static const String wrongPasswordProvided =
       'Wrong password provided for that user.';
+  static const String scanYourFingerprint =
+      'Please Scan your fingerprint to authenticate';
+  static const String authenticationDone = 'Authentication done successfully';
+  static const String authNotAvailable =
+      'Auth with biometrics feature is not available on this device';
+  static const String accessDenied = 'Access denied';
 }
