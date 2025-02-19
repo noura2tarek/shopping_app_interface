@@ -13,6 +13,6 @@ My custom route in the end of the sign up page with custom curves.
 Animation video in assets/videos folder &  
 in https://drive.google.com/file/d/1jTUgUgCUnObu7ubsGV7qGnsgXD5FskeD/view?usp=sharing.
     
-The widgets in lib/widgets folder.      
-The screens in lib/screens folder. 
-Other App components is stored in lib/utils folder.
+The widgets in lib/widgets folder.               
+The screens in lib/screens folder.                      
+Other App components is stored in lib/utils folder.                        
