@@ -8,7 +8,8 @@ products data shown using page view and grid view,
 And offers data shown using list view (horizontal).
 
 Any product image is Network image from internet with a placeholder while loading using (FadeInImage) widget.
-Every product has an 'add to cart' icon, which toggle adding and removing items from cart list.
+Every product in grid view has an 'add to cart' icon button, which adding items to cart list.        
+The product which added to the cart, the 'add to cart icon' color, became green.
 Then displays a message to the user 'Item added to the cart successfully' using snackBar.
 
 The UI is made responsive using media queries,  
