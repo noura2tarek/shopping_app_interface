@@ -1,5 +1,3 @@
-# shopping_app_interface
-
 # Animation
 
 # Description
