@@ -71,7 +71,9 @@ class _HomePageState extends State<HomePage> {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 7.0),
               child: ProductsGridView(
-                  onToggleItemInCartFunction: _onToggleItemInCart),
+                onAddItemInCartFunction: _onAddItemInCart,
+                cartItems: _cartItems,
+              ),
             ),
             /* --- Hot offers text ---*/
             CustomText(text: '2'.tr()),
@@ -90,24 +92,14 @@ class _HomePageState extends State<HomePage> {
   }
 
   //----------- Methods--------------//
-  // toggle item in cart function
-  void _onToggleItemInCart(String itemName) {
-    var isExist = _cartItems.contains(itemName);
-    if (isExist) {
-      setState(() {
-        _cartItems.remove(itemName);
-      });
-      ScaffoldMessenger.of(context).showSnackBar(
-        customSnackBar(text: '22'.tr()),
-      );
-    } else {
-      setState(() {
-        _cartItems.add(itemName);
-      });
-      ScaffoldMessenger.of(context).showSnackBar(
-        customSnackBar(text: '21'.tr()),
-      );
-    }
+  // add item in cart function
+  void _onAddItemInCart(String itemName) {
+    setState(() {
+      _cartItems.add(itemName);
+    });
+    ScaffoldMessenger.of(context).showSnackBar(
+      customSnackBar(text: '21'.tr()),
+    );
   }
 }
 

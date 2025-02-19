@@ -9,11 +9,13 @@ class GridViewItem extends StatelessWidget {
     required this.imageLink,
     required this.name,
     this.onTap,
+    required this.inCart,
   });
 
   final String imageLink;
   final String name;
   final void Function()? onTap;
+  final bool inCart;
 
   @override
   Widget build(BuildContext context) {
@@ -59,7 +61,7 @@ class GridViewItem extends StatelessWidget {
                     icon: Icon(
                       Icons.add_shopping_cart_outlined,
                       size: 18.0,
-                      color: AppColors.mainColor,
+                      color: inCart ? AppColors.green : AppColors.mainColor,
                     ),
                     onPressed: onTap,
                   ),

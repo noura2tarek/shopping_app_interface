@@ -4,9 +4,13 @@ import '../utils/lists.dart';
 import 'grid_view_item.dart';
 
 class ProductsGridView extends StatefulWidget {
-  const ProductsGridView({super.key, required this.onToggleItemInCartFunction});
+  const ProductsGridView(
+      {super.key,
+      required this.onAddItemInCartFunction,
+      required this.cartItems});
 
-  final void Function(String itemName) onToggleItemInCartFunction;
+  final void Function(String itemName) onAddItemInCartFunction;
+  final List<String> cartItems;
 
   @override
   State<ProductsGridView> createState() => _ProductsGridViewState();
@@ -41,8 +45,9 @@ class _ProductsGridViewState extends State<ProductsGridView> {
         return GridViewItem(
           imageLink: productsImages[index],
           name: imagesText[index],
+          inCart: widget.cartItems.contains(imagesText[index]),
           onTap: () {
-            widget.onToggleItemInCartFunction(imagesText[index]);
+            widget.onAddItemInCartFunction(imagesText[index]);
           },
         );
       },
