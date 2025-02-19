@@ -39,7 +39,10 @@ class _HomePageState extends State<HomePage> {
             CustomText(text: AppStrings.ourProducts),
             /* --- Page view of products ---*/
             SizedBox(
-              height: MediaQuery.of(context).size.height * 0.25,
+              height: MediaQuery
+                  .of(context)
+                  .size
+                  .height * 0.25,
               child: PageView.builder(
                 scrollDirection: Axis.horizontal,
                 itemCount: images.length,
@@ -57,7 +60,8 @@ class _HomePageState extends State<HomePage> {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 7.0),
               child: ProductsGridView(
-                onToggleItemInCartFunction: _onToggleItemInCart,
+                onAddItemInCartFunction: _onAddItemInCart,
+                cartItems: _cartItems,
               ),
             ),
             /* --- Hot offers text ---*/
@@ -77,24 +81,14 @@ class _HomePageState extends State<HomePage> {
   }
 
   //-------- Methods -------//
-  // toggle item in cart function //
-  void _onToggleItemInCart(String itemName) {
-    var isExist = _cartItems.contains(itemName);
-    if (isExist) {
-      setState(() {
-        _cartItems.remove(itemName);
-      });
-      ScaffoldMessenger.of(context).showSnackBar(
-        customSnackBar(text: AppStrings.itemRemoved),
-      );
-    } else {
-      setState(() {
-        _cartItems.add(itemName);
-      });
-      ScaffoldMessenger.of(context).showSnackBar(
-        customSnackBar(text: AppStrings.itemAdded),
-      );
-    }
+  // add item in cart function
+  void _onAddItemInCart(String itemName) {
+    setState(() {
+      _cartItems.add(itemName);
+    });
+    ScaffoldMessenger.of(context).showSnackBar(
+      customSnackBar(text: AppStrings.itemAdded),
+    );
   }
 }
 
