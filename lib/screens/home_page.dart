@@ -178,8 +178,10 @@ class _HomePageState extends State<HomePage> {
             /* --- Grid view of products ---*/
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 7.0),
-              child:
-                  ProductsGridView(onAddItemInCartFunction: _onAddItemInCart),
+              child: ProductsGridView(
+                onAddItemInCartFunction: _onAddItemInCart,
+                cartItems: _cartItems,
+              ),
             ),
             /* --- Hot offers text ---*/
             CustomText(text: AppStrings.hotOffers),
@@ -199,7 +201,7 @@ class _HomePageState extends State<HomePage> {
 
 ////////////////////////////
 //----------- Methods--------------//
-// add item in cart function
+  // add item in cart function
   void _onAddItemInCart(String itemName) {
     setState(() {
       _cartItems.add(itemName);
