@@ -3,9 +3,9 @@ import '../utils/lists.dart';
 import 'grid_view_item.dart';
 
 class ProductsGridView extends StatelessWidget {
-  const ProductsGridView({super.key, required this.onToggleItemInCartFunction});
+  const ProductsGridView({super.key, required this.onAddItemInCartFunction});
 
-  final void Function(String itemName) onToggleItemInCartFunction;
+  final void Function(String itemName) onAddItemInCartFunction;
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +27,7 @@ class ProductsGridView extends StatelessWidget {
           imageLink: productsImages[index],
           name: imagesText[index],
           onTap: () {
-            onToggleItemInCartFunction(imagesText[index]);
+            onAddItemInCartFunction(imagesText[index]);
           },
         );
       },
