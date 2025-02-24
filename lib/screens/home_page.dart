@@ -45,13 +45,16 @@ class _HomePageState extends State<HomePage> {
         setState(() {});
         ScaffoldMessenger.of(context).showSnackBar(customSnackBar(
           text: AppStrings.authNotAvailable,
+          color: AppColors.red,
         ));
       }
     } on PlatformException catch (e) {
       _isAvailable = false;
       setState(() {});
-      ScaffoldMessenger.of(context)
-          .showSnackBar(customSnackBar(text: AppStrings.authNotAvailable));
+      ScaffoldMessenger.of(context).showSnackBar(customSnackBar(
+        text: AppStrings.authNotAvailable,
+        color: AppColors.red,
+      ));
       log('Error occurred(can not authenticate): $e');
     }
   }
@@ -81,6 +84,7 @@ class _HomePageState extends State<HomePage> {
       if (_isAuthenticated) {
         ScaffoldMessenger.of(context).showSnackBar(customSnackBar(
           text: AppStrings.authenticationDone,
+          color: AppColors.green,
         ));
       }
     } catch (e) {
@@ -91,6 +95,7 @@ class _HomePageState extends State<HomePage> {
       });
       ScaffoldMessenger.of(context).showSnackBar(customSnackBar(
         text: AppStrings.authNotAvailable,
+        color: AppColors.red,
       ));
     }
   }
@@ -146,6 +151,7 @@ class _HomePageState extends State<HomePage> {
               } else if (!_isAuthenticated) {
                 ScaffoldMessenger.of(context).showSnackBar(customSnackBar(
                   text: AppStrings.accessDenied,
+                  color: AppColors.red,
                 ));
               }
             },

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shopping_app_interface/screens/sign_up_page.dart';
+import 'package:shopping_app_interface/utils/app_colors.dart';
 import 'package:shopping_app_interface/widgets/custom_snack_bar.dart';
 import '../utils/app_strings.dart';
 import '../widgets/auth_widgets/custom_from_field.dart';
@@ -135,12 +136,14 @@ class _LoginPageState extends State<LoginPage> {
                                   ScaffoldMessenger.of(context).showSnackBar(
                                     customSnackBar(
                                       text: AppStrings.noUserFound,
+                                      color: AppColors.red,
                                     ),
                                   );
                                 } else if (e.code == 'wrong-password') {
                                   ScaffoldMessenger.of(context).showSnackBar(
                                     customSnackBar(
                                       text: AppStrings.wrongPasswordProvided,
+                                      color: AppColors.red,
                                     ),
                                   );
                                 }

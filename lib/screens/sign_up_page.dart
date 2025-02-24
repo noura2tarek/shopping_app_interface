@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:shopping_app_interface/screens/login_page.dart';
 import 'package:shopping_app_interface/widgets/custom_snack_bar.dart';
+import '../utils/app_colors.dart';
 import '../utils/app_strings.dart';
 import '../widgets/auth_widgets/alert_dialog.dart';
 import '../widgets/auth_widgets/custom_from_field.dart';
@@ -238,12 +239,14 @@ class _SignUpPageState extends State<SignUpPage> {
         ScaffoldMessenger.of(context).showSnackBar(
           customSnackBar(
             text: AppStrings.passwordProvidedIsWeak,
+            color: AppColors.red,
           ),
         );
       } else if (e.code == 'email-already-in-use') {
         ScaffoldMessenger.of(context).showSnackBar(
           customSnackBar(
             text: AppStrings.theAccountAlreadyExists,
+            color: AppColors.red,
           ),
         );
       }
