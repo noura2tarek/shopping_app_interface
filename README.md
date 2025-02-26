@@ -23,7 +23,7 @@ Other App components is stored in lib/utils folder.
 
 ---------------------------------------
 
-## How to Run
+# How to Run
 
 1. Clone the repository.
 2. Run `flutter pub get` to install dependencies.
