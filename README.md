@@ -22,7 +22,7 @@ for authentication using LocalAuthentication.authenticate() method in local_auth
 
  -----------------------
 
-## How to Run
+# How to Run
 
 1. Clone the repository.
 2. Run `flutter pub get` to install dependencies.
