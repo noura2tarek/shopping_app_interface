@@ -1,4 +1,4 @@
-# Shopping_app_interface
+# Shopping App Interface
 
 This is a Shopping app displays products and offers in one page using flutter.
 
